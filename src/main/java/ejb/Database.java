@@ -163,7 +163,6 @@ public class Database implements DatabaseService {
             // em.persist(o);
             receipt.addOrderDetail(o);
         }
-        System.out.println("I'm in ejb.Database.makeReceipt()");
         em.persist(receipt);
         return receipt;
     }
@@ -233,7 +232,6 @@ public class Database implements DatabaseService {
 
     @Override
     public void makeReview(int userId, String reviewString, int bookId) {
-        System.out.println("DATABASE RUNNING");
         Review review = new Review();
         review.setReviewBook(this.getBookById(bookId));
         review.setReviewUser(this.getUserById(userId));

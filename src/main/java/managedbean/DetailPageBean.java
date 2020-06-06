@@ -31,16 +31,17 @@ public class DetailPageBean extends BaseBean {
         bookReviews = new ArrayList<Review>();
     }
 
-    public void makeReview() {
+    // PAGE FUNCTION
+    public String makeReview() {
         System.out.println("USER REVIEW: " + userReview);
         userPageBean.makeReview(userReview, selectedBook.getBookId());
-        userReview = null;
+        loadBook(this.selectedBook.getBookId());
+        return "detail.xhtml?faces-redirect=true";
     }
 
+    // ACCESSORS
     public String setSelectedBook(int bookId) {
-        selectedBook = db.getBookById(bookId);
-        cart.setRequestBookId(selectedBook.getBookId());
-        this.setBookReviews(this.selectedBook.getBookReviews());
+        loadBook(bookId);
         return "detail.xhtml?faces-redirect=true";
     }
 
@@ -52,10 +53,6 @@ public class DetailPageBean extends BaseBean {
         return this.bookReviews;
     }
 
-    public void setBookReviews(List<Review> bookReviews) {
-        this.bookReviews = bookReviews;
-    }
-
     public String getUserReview() {
         return userReview;
     }
@@ -63,4 +60,12 @@ public class DetailPageBean extends BaseBean {
     public void setUserReview(String userReview) {
         this.userReview = userReview;
     }
+
+    // PRIVATE METHODS
+    private void loadBook(int bookId) {
+        selectedBook = db.getBookById(bookId);
+        cart.setRequestBookId(selectedBook.getBookId());
+        this.bookReviews = this.selectedBook.getBookReviews();
+    }
+    
 }

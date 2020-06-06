@@ -50,4 +50,35 @@ public class Review implements Serializable {
         this.reviewUser = reviewUser;
     }
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((reviewBook == null) ? 0 : reviewBook.hashCode());
+		result = prime * result + ((reviewUser == null) ? 0 : reviewUser.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Review other = (Review) obj;
+		if (reviewBook == null) {
+			if (other.reviewBook != null)
+				return false;
+		} else if (!reviewBook.equals(other.reviewBook))
+			return false;
+		if (reviewUser == null) {
+			if (other.reviewUser != null)
+				return false;
+		} else if (!reviewUser.equals(other.reviewUser))
+			return false;
+		return true;
+	}
+
 }
