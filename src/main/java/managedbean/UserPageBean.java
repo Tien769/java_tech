@@ -113,6 +113,11 @@ public class UserPageBean extends BaseBean {
             this.phone = null;
         }
     }
+
+    public void makeReview(String reviewString, int bookId) {
+        as.makeReview(this.getUser().getUserId(), reviewString, bookId);
+    }
+
     // ------------------------------------------ACESSORS------------------------------------------
 
     public String getEmail() {

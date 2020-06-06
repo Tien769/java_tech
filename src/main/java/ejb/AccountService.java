@@ -18,4 +18,6 @@ public interface AccountService {
     public User getCurrentUser();
 
     public void setCurrentUser(User user);
+
+    public void makeReview(int userId, String reviewString, int bookId);
 }

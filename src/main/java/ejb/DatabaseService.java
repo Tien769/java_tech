@@ -34,6 +34,8 @@ public interface DatabaseService {
 
     public Receipt makeReceipt(Integer userId, List<OrderDetail> details, Receipt receipt);
 
+    public void makeReview(int userId, String reviewString, int bookId);
+
     // ADMIN METHODS
 
     public void create(Book book);

@@ -17,12 +17,12 @@ public class Review implements Serializable {
     private String reviewContent;
 
     @Id
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "bookid")
     private Book reviewBook;
     
     @Id
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userid")
     private User reviewUser;
 

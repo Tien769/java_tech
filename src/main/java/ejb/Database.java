@@ -52,6 +52,7 @@ public class Database implements DatabaseService {
     public Book getBookById(int id) {
         Book book = em.find(Book.class, id);
         book.getBookGenreList().size();
+        book.getBookReviews().size();
         return book;
     }
 
@@ -228,6 +229,16 @@ public class Database implements DatabaseService {
             user.getUserReceipts().size();
         }
         return users;
+    }
+
+    @Override
+    public void makeReview(int userId, String reviewString, int bookId) {
+        System.out.println("DATABASE RUNNING");
+        Review review = new Review();
+        review.setReviewBook(this.getBookById(bookId));
+        review.setReviewUser(this.getUserById(userId));
+        review.setReviewContent(reviewString);
+        em.merge(review);
     }
 
 }

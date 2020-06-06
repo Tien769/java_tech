@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -40,6 +41,9 @@ public class Book implements Serializable {
     // Non-accessed
     @ManyToMany(mappedBy = "collectionBooks", cascade = CascadeType.PERSIST)
     private List<BookCollection> bookCollections;
+
+    @OneToMany(mappedBy = "reviewBook", cascade = CascadeType.ALL)
+    private List<Review> bookReviews = new ArrayList<Review>();
 
     // Non-accessed
     @OneToMany(mappedBy = "orderBook")
@@ -181,5 +185,13 @@ public class Book implements Serializable {
     public List<OrderDetail> getBookOrders() {
         return bookOrders;
     }
+
+	public List<Review> getBookReviews() {
+		return bookReviews;
+	}
+
+	public void setBookReviews(List<Review> bookReviews) {
+		this.bookReviews = bookReviews;
+	}
 
 }

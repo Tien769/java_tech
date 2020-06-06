@@ -14,7 +14,7 @@
         <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
         <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
     </h:head>
-    
+
     <h:body>
         <!--HEADER-->
         <ui:insert name="header">
@@ -28,6 +28,28 @@
             <div>
                 <p:commandButton value="add to cart" action="#{cartPageBean.addBook()}"/>
             </div>
+        </h:form>
+        
+        <h:form>
+            <p:inputTextarea value="#{detailPageBean.userReview}"/>
+            <p:commandButton value="make review" action="#{detailPageBean.makeReview()}"/>
+        </h:form>
+
+        <h:form>
+            <p:dataTable value="#{detailPageBean.bookReviews}" var="review">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="User"/>
+                    </f:facet>
+                    <h:outputText value="#{review.reviewUser.userName}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Review"/>
+                    </f:facet>
+                    <h:outputText value="#{review.reviewContent}"/>
+                </p:column>
+            </p:dataTable>
         </h:form>
 
         <!--FOOTER-->
