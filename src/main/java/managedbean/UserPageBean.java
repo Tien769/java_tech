@@ -23,6 +23,7 @@ public class UserPageBean extends BaseBean {
     private List<BookCollection> userBookCollections;
     private List<Receipt> userReceipts;
     private List<Review> userReviews;
+    private String reqCollectionId;
     @EJB
     private AccountService as;
 
@@ -41,13 +42,10 @@ public class UserPageBean extends BaseBean {
     public String signIn() { // Sign in
         User user = as.authenticate(email, password);
         if (user != null) {
-            System.out.println("Loging in");
             this.user = user;
-            System.out.println(this.user.getUserName());
             updateBean();
             return "welcome.xhtml?faces-redirect=true";
         }
-        System.out.println("USER LOGGING IN: " + this.user.getUserName());
         return "fail";
     }
 
@@ -98,6 +96,26 @@ public class UserPageBean extends BaseBean {
         }
     }
 
+    public void makeReview(String reviewString, int bookId) {
+        as.makeReview(this.getUser().getUserId(), reviewString, bookId);
+    }
+
+    public String createCollection(String collectionName) {
+        BookCollection newCollection = new BookCollection();
+        newCollection.setCollectionName(collectionName);
+        newCollection.setCollectionUser(this.user);
+        newCollection.setIsPromoted(false);
+        this.user = as.createCollection(newCollection, this.user);
+        loadLibrary();
+        return "list.xhtml?faces-redirect=true";
+    }
+
+    public String deleteCollection() {
+        this.user = as.deleteCollection(this.user, Integer.parseInt(reqCollectionId));
+        loadLibrary();
+        return "list.xhtml?faces-redirect=true";
+    }
+
     private void updateBean() {
         if (user != null) {
             this.name = user.getUserName();
@@ -105,17 +123,19 @@ public class UserPageBean extends BaseBean {
             this.password = user.getUserPassword();
             this.address = user.getUserAddress();
             this.phone = user.getUserPhone();
+            this.userBookCollections = user.getUserCollections();
+            this.userReviews = user.getUserReviews();
+            this.userReceipts = user.getUserReceipts();
         } else {
-            this.name =null;
+            this.name = null;
             this.email = null;
             this.password = null;
             this.address = null;
             this.phone = null;
+            this.userBookCollections = null;
+            this.userReviews = null;
+            this.userReceipts = null;
         }
-    }
-
-    public void makeReview(String reviewString, int bookId) {
-        as.makeReview(this.getUser().getUserId(), reviewString, bookId);
     }
 
     // ------------------------------------------ACESSORS------------------------------------------
@@ -201,5 +221,13 @@ public class UserPageBean extends BaseBean {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getReqCollectionId() {
+        return reqCollectionId;
+    }
+
+    public void setReqCollectionId(String reqCollectionId) {
+        this.reqCollectionId = reqCollectionId;
     }
 }

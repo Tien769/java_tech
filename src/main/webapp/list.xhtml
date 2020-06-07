@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <title>My Web</title>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        <h:outputStylesheet name="styles.css" library="css"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+    </h:head>
+    <h:body>
+        <ui:insert  name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+
+        <br></br>
+
+        <!--CONTENT-->
+        <div class="ui-g" style="background-color: beige;">
+            <div class="ui-g-2">
+                <h:form>
+                    <p:menu model="#{menuViewModel.model}" toggleable="true"/>
+                    <p:dialog widgetVar="collectionNameInput">
+                        <p:inputText value="#{menuViewModel.newCollectionName}"/>
+                        <p:commandButton value="Create" action="#{menuViewModel.createColletion()}"/>
+                    </p:dialog>
+                    <p:confirmDialog message="Choose what you want to do with this collection" widgetVar="collectionAction">
+                        <p:commandButton value="View"/>
+                        <p:commandButton value="Delete" action="#{userPageBean.deleteCollection()}"/>
+                    </p:confirmDialog>
+                </h:form>
+            </div>
+            <div class="ui-g ui-g-10">
+
+            </div>
+        </div>
+        <!--FOOTER-->
+        <ui:insert name="footer">
+            <ui:include src="footer.xhtml"/>
+        </ui:insert>
+    </h:body>
+</html>
+

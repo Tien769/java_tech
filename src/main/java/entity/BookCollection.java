@@ -101,4 +101,29 @@ public class BookCollection implements Serializable {
         this.collectionUser = collectionUser;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((collectionId == null) ? 0 : collectionId.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BookCollection other = (BookCollection) obj;
+        if (collectionId == null) {
+            if (other.collectionId != null)
+                return false;
+        } else if (!collectionId.equals(other.collectionId))
+            return false;
+        return true;
+    }
+
 }
