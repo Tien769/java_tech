@@ -140,21 +140,9 @@ public class Database implements DatabaseService {
     }
 
     // Update an account
-    public User updateAccount(User user) {
+    public void updateAccount(User user) {
         em.merge(user);
-        return user;
-    }
-
-    // Update an account
-    public User updateAccount(User user, BookCollection collection) {
-        user.getUserCollections().add(collection);
-        em.merge(user);
-        return user;
-    }
-
-    public User removeCollectionFromAccount(User user, int collectionId) {
-        user.getUserCollections().remove(new BookCollection(collectionId, "#"));
-        return em.merge(user);
+        return;
     }
 
     // ------------------------------------RECEIPT------------------------------------

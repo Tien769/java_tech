@@ -28,11 +28,7 @@ public interface DatabaseService {
 
     public void createAccount(User user);
 
-    public User updateAccount(User user);
-
-    public User updateAccount(User user, BookCollection collection);
-
-    public User removeCollectionFromAccount(User user, int collectionId);
+    public void updateAccount(User user);
 
     public Receipt getReceiptById(int id);
 

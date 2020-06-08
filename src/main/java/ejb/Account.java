@@ -53,14 +53,4 @@ public class Account implements AccountService {
         db.makeReview(userId, reviewString, bookId);
     }
 
-    @Override
-    public User createCollection(BookCollection collection, User user) {
-        return db.updateAccount(user, collection);
-    }
-
-    @Override
-    public User deleteCollection(User user, int collectionId) {
-        return db.removeCollectionFromAccount(user, collectionId);
-    }
-
 }

@@ -20,8 +20,4 @@ public interface AccountService {
     public void setCurrentUser(User user);
 
     public void makeReview(int userId, String reviewString, int bookId);
-
-    public User createCollection(BookCollection collection, User user);
-
-    public User deleteCollection(User user, int collectionId);
 }
