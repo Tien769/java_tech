@@ -20,4 +20,6 @@ public interface AccountService {
     public void setCurrentUser(User user);
 
     public void makeReview(int userId, String reviewString, int bookId);
+
+    public User syncAccount(User user);
 }

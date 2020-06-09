@@ -53,4 +53,9 @@ public class Account implements AccountService {
         db.makeReview(userId, reviewString, bookId);
     }
 
+    @Override
+    public User syncAccount(User user) {
+        return db.updateAccount(user);
+    }
+
 }

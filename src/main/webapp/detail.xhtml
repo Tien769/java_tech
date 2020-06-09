@@ -5,7 +5,8 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:b="http://bootsfaces.net/ui">
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <title>My Web</title>
@@ -21,36 +22,66 @@
             <ui:include src="header.xhtml"/>
         </ui:insert>
 
-        <h:form>
-            <div>
-                <h:outputText value="#{detailPageBean.selectedBook.title}"/>
-            </div>
-            <div>
-                <p:commandButton value="add to cart" action="#{cartPageBean.addBook()}"/>
-            </div>
-        </h:form>
-        
-        <h:form>
-            <p:inputTextarea value="#{detailPageBean.userReview}"/>
-            <p:commandButton value="make review" action="#{detailPageBean.makeReview()}"/>
-        </h:form>
+        <div>
+            <h:form>
+                <div>
+                    <h:outputText value="#{detailPageBean.selectedBook.title}"/>
+                </div>
+                <div>
+                    <p:commandButton value="add to cart" action="#{cartPageBean.addBook()}"/>
+                </div>
+                <div style="max-width: 20%;">
 
-        <h:form id="reviewList">
-            <p:dataTable id="reviewTable" value="#{detailPageBean.bookReviews}" var="review">
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="User"/>
-                    </f:facet>
-                    <h:outputText value="#{review.reviewUser.userName}"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Review"/>
-                    </f:facet>
-                    <h:outputText value="#{review.reviewContent}"/>
-                </p:column>
-            </p:dataTable>
-        </h:form>
+                    <div>
+                        <p:commandButton value="Add to Collection" onclick="PF('collectionChooser').show()"/>
+                        <p:dialog widgetVar="collectionChooser">
+                            <c:set var ="userName" scope="session" value="#{userPageBean.name}"/>
+                            <c:if test="${userName != null}">
+                                <p:selectManyMenu id="userCollection" value="#{detailPageBean.selectedBookCollections}" var="c" showCheckbox="true">
+                                    <f:selectItems value="#{detailPageBean.userBookCollections}" var="collection" itemLabel="#{collection.collectionName}" itemValue="#{collection}"/>
+                                    <p:column>
+                                        <h:outputText value="#{c.collectionName}"/>
+                                    </p:column>
+                                </p:selectManyMenu>
+                                <p:commandButton value="Add to collection" action="#{detailPageBean.addBookToCollection()}"/>
+                            </c:if>
+                            <c:if test="${userName == null}">
+                                <div><h:outputText value="PLEASE LOG IN BEFORE PROCEEDING"/></div>
+                            </c:if>
+                        </p:dialog>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+
+        <div>
+            <h:form>
+                <p:inputTextarea value="#{detailPageBean.userReview}"/>
+                <div>
+                    <p:commandButton value="make review" action="#{detailPageBean.makeReview()}"/>
+                </div>
+            </h:form> 
+        </div>
+
+        <div>
+            <h:form id="reviewList">
+                <p:dataTable id="reviewTable" value="#{detailPageBean.bookReviews}" var="review">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="User"/>
+                        </f:facet>
+                        <h:outputText value="#{review.reviewUser.userName}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Review"/>
+                        </f:facet>
+                        <h:outputText value="#{review.reviewContent}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+
 
         <!--FOOTER-->
         <ui:insert name="footer">

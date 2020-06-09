@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -26,6 +28,7 @@ public class BookCollection implements Serializable {
     private static final long serialVersionUID = -5140048251055770889L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "collectionid")
     private Integer collectionId;
     private String collectionName;
@@ -46,6 +49,12 @@ public class BookCollection implements Serializable {
     private User collectionUser;
 
     public BookCollection() {
+    }
+
+    public BookCollection(String name, boolean isPromoted, User user){
+        this.collectionName = name;
+        this.isPromoted = isPromoted;
+        this.collectionUser = user;
     }
 
     public BookCollection(int id, String name) {
@@ -99,6 +108,31 @@ public class BookCollection implements Serializable {
 
     public void setCollectionUser(User collectionUser) {
         this.collectionUser = collectionUser;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((collectionId == null) ? 0 : collectionId.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BookCollection other = (BookCollection) obj;
+        if (collectionId == null) {
+            if (other.collectionId != null)
+                return false;
+        } else if (!collectionId.equals(other.collectionId))
+            return false;
+        return true;
     }
 
 }

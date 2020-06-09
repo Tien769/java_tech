@@ -119,8 +119,7 @@ public class Database implements DatabaseService {
         Query q = em.createNamedQuery("User.verifyLogin");
         q.setParameter("mail", email);
         q.setParameter("pass", pass);
-        User user = null;
-        user = (User) q.getSingleResult();
+        User user = (User) q.getSingleResult();
         user.getUserCollections().size();
         for (BookCollection collection : user.getUserCollections()) {
             collection.getCollectionBooks().size();
@@ -134,15 +133,16 @@ public class Database implements DatabaseService {
     }
 
     // Create a new account
-    public void createAccount(User user) {
+    public User createAccount(User user) {
         em.persist(user);
-        return;
+        return em.find(user.getClass(), user.getUserId());
     }
 
     // Update an account
-    public void updateAccount(User user) {
+    public User updateAccount(User user) {
         em.merge(user);
-        return;
+        User updatedUser = this.verifyLogin(user.getUserMail(), user.getUserPassword());
+        return updatedUser;
     }
 
     // ------------------------------------RECEIPT------------------------------------

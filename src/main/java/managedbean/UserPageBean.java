@@ -7,6 +7,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+
 import ejb.AccountService;
 import entity.*;
 
@@ -20,6 +22,8 @@ public class UserPageBean extends BaseBean {
     private String password;
     private String address;
     private String phone;
+    private int selectedCollectionId;
+    private String newCollectionName;
     private List<BookCollection> userBookCollections;
     private List<Receipt> userReceipts;
     private List<Review> userReviews;
@@ -48,6 +52,7 @@ public class UserPageBean extends BaseBean {
             return "welcome.xhtml?faces-redirect=true";
         }
         System.out.println("USER LOGGING IN: " + this.user.getUserName());
+        PrimeFaces.current().ajax().update("userCollection");
         return "fail";
     }
 
@@ -73,6 +78,7 @@ public class UserPageBean extends BaseBean {
 
     public void updateAccount() { // Make changes to account
         User modifiedUser = new User(name, password, address, phone, email);
+        modifiedUser.setUserCollections(this.userBookCollections);
         as.updateAccount(modifiedUser);
         user = as.getCurrentUser();
         updateBean();
@@ -105,19 +111,45 @@ public class UserPageBean extends BaseBean {
             this.password = user.getUserPassword();
             this.address = user.getUserAddress();
             this.phone = user.getUserPhone();
+            loadLibrary();
+            loadReceipt();
+            loadReviews();
         } else {
-            this.name =null;
+            this.name = null;
             this.email = null;
             this.password = null;
             this.address = null;
             this.phone = null;
+            this.userBookCollections = null;
+            this.userReceipts = null;
+            this.userReviews = null;
         }
+
     }
 
     public void makeReview(String reviewString, int bookId) {
         as.makeReview(this.getUser().getUserId(), reviewString, bookId);
     }
 
+    public String addCollection() {
+        this.user.getUserCollections().add(new BookCollection(this.newCollectionName, false, this.user));
+        this.user = as.syncAccount(this.user);
+        updateBean();
+        return "account.xhtml?faces-redirect=true";
+    }
+
+    public String deleteCollection() {
+        this.user.getUserCollections().remove(new BookCollection(this.selectedCollectionId, "whatever"));
+        this.user = as.syncAccount(this.user);
+        updateBean();
+        return "account.xhtml?faces-redirect=true";
+    }
+
+    public void modifyLibrary() {
+        this.user.setUserCollections(this.userBookCollections);
+        this.user = as.syncAccount(this.user);
+        updateBean();
+    }
     // ------------------------------------------ACESSORS------------------------------------------
 
     public String getEmail() {
@@ -201,5 +233,21 @@ public class UserPageBean extends BaseBean {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getSelectedCollection() {
+        return selectedCollectionId;
+    }
+
+    public void setSelectedCollection(int selectedCollectionId) {
+        this.selectedCollectionId = selectedCollectionId;
+    }
+
+    public String getNewCollectionName() {
+        return newCollectionName;
+    }
+
+    public void setNewCollectionName(String newCollectionName) {
+        this.newCollectionName = newCollectionName;
     }
 }

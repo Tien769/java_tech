@@ -26,9 +26,9 @@ public interface DatabaseService {
 
     public User verifyLogin(String email, String pass);
 
-    public void createAccount(User user);
+    public User createAccount(User user);
 
-    public void updateAccount(User user);
+    public User updateAccount(User user);
 
     public Receipt getReceiptById(int id);
 

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import ejb.DatabaseService;
@@ -31,6 +32,13 @@ public class ListPageBean extends BaseBean {
     }
 
     // ------------------------------------------PAGE_FUNCTION------------------------------------------
+
+    public String setSelectedBook(int bookId) {
+        Book b = db.getBookById(bookId);
+        System.out.println("LIST SELECTED BOOK: " + b.getTitle());
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("selectedBook", b);
+        return "detail.xhtml?faces-redirect=true";
+    }
 
     public void searchBook(String field, String searchTerm) { // Search for book by title or author
         books = new ArrayList<Book>();
