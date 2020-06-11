@@ -1,5 +1,7 @@
 package ejb;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -23,11 +25,8 @@ public class Database implements DatabaseService {
     // Get all Books
     @SuppressWarnings("unchecked")
     public List<Book> getAllBooks() {
-        Query q = em.createNamedQuery("Book.getAllBooks");
+        Query q = em.createNamedQuery("Book.getAllBooks").setMaxResults(10000);
         List<Book> books = q.getResultList();
-        for (Book book : books) {
-            book.getBookGenreList().size();
-        }
         return books;
     }
 
@@ -35,15 +34,16 @@ public class Database implements DatabaseService {
     @SuppressWarnings("unchecked")
     public List<Book> getBooks(String field, String value) {
         Query q;
-        if (field.equals("author")) {
+        if (field.equals("author")) { // if search by author
             q = em.createNamedQuery("Book.searchByAuthor");
-        } else {
+        } else { // if search by title
             q = em.createNamedQuery("Book.searchByTitle");
         }
         q.setParameter("patern", "%" + value + "%");
         List<Book> books = q.getResultList();
         for (Book book : books) {
             book.getBookGenreList().size();
+            book.getBookReviews().size();
         }
         return books;
     }
@@ -96,8 +96,10 @@ public class Database implements DatabaseService {
     }
 
     // Search BookCollection by ID
-    public BookCollection getCollectionById(int collectionId) {
-        BookCollection collection = em.find(BookCollection.class, collectionId);
+    public BookCollection getCollectionByGenre(Genre genre) {
+        Query q = em.createNamedQuery("BookCollection.getByGenre");
+        q.setParameter("genre", genre);
+        BookCollection collection = (BookCollection) q.getResultList().get(0);
         collection.getCollectionBooks().size();
         collection.getCollectionGenre();
         return collection;
@@ -141,7 +143,9 @@ public class Database implements DatabaseService {
     // Update an account
     public User updateAccount(User user) {
         em.merge(user);
+        // System.out.println("NUMBER OF BOOKS IN LIBRARY: " + user.getUserCollections().get(0).getCollectionBooks().size());
         User updatedUser = this.verifyLogin(user.getUserMail(), user.getUserPassword());
+        // System.out.println("NUMBER OF BOOKS IN LIBRARY: " + updatedUser.getUserCollections().get(0).getCollectionBooks().size());
         return updatedUser;
     }
 
@@ -165,6 +169,20 @@ public class Database implements DatabaseService {
         }
         em.persist(receipt);
         return receipt;
+    }
+
+    // ------------------------------------GENRE------------------------------------
+    @SuppressWarnings("unchecked")
+    public List<Genre> getAllGenre() {
+        Query q = em.createNamedQuery("Genre.getAllGenres").setMaxResults(12);
+        List<Genre> results = q.getResultList();
+        Collections.sort(results, new Comparator<Genre>() {
+            @Override
+            public int compare(Genre o1, Genre o2) {
+                return o1.getGenrename().compareTo(o2.getGenrename());
+            }
+        });
+        return results;
     }
 
     // ------------------------------------ADMIN_METHODS------------------------------------

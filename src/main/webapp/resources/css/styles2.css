@@ -167,25 +167,7 @@ body .ui-datatable thead th *{
     width: 50%;
 }
 
-/*LIST PAGE*/
-body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link.ui-state-hover {
-    background-color: transparent;
-}
-
-.ui-widget-header .ui-inputfield, .ui-widget-content .ui-inputfield {
-    border: none;
-}
-
-.ui-selectmanymenu .ui-selectlistbox-item{
-    text-align: left;
-    margin: auto;
-}
-body .ui-widget, body .ui-widget .ui-widget {
-    margin-top: 0rem;
-}
-
-
-/* DETAIL PAGE
+/* DETAIL PAGE*/
 .detail-container{
     padding: 2em;
 }
@@ -219,8 +201,7 @@ body .ui-widget, body .ui-widget .ui-widget {
 }
 .button-buy .ui-button-text{
     font-size: 19px;
-}*/
-
+}
 
 /*.button-login{
     margin-left: 95px !important;

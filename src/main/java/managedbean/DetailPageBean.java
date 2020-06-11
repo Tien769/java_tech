@@ -13,9 +13,6 @@ import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.PrimeFaces;
-
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
@@ -57,8 +54,7 @@ public class DetailPageBean extends BaseBean {
     public String makeReview() {
         System.out.println("USER REVIEW: " + userReview);
         userPageBean.makeReview(userReview, selectedBook.getBookId());
-        listPageBean.setSelectedBook(this.selectedBook.getBookId());
-        return "detail.xhtml?faces-redirect=true";
+        return listPageBean.setSelectedBook(this.selectedBook.getBookId());
     }
 
     // ACCESSORS
@@ -81,16 +77,25 @@ public class DetailPageBean extends BaseBean {
 
     public String addBookToCollection() {
         for (BookCollection c : selectedBookCollections) {
+            System.out.println("COLLECTION: " + this.userBookCollections.size() + " SELECTED"
+                    + this.selectedBookCollections.size());
             if (c.getCollectionBooks().contains(this.selectedBook)) {
                 addToCollectionResult += "This book is already in collection " + c.getCollectionName();
+                System.out.println("BOOK ALREADY IN COLLECTION");
             } else {
                 c.getCollectionBooks().add(this.selectedBook);
+                System.out.println("BOOK NOT IN COLLECTION. ADDING");
             }
+
             for (BookCollection userCollection : this.userBookCollections) {
                 if (userCollection.equals(c)) {
+                    System.out.println("SAVING COLLECTION: " + userCollection.getCollectionName());
                     userCollection.setCollectionBooks(c.getCollectionBooks());
                 }
             }
+        }
+        for (BookCollection c : this.userBookCollections) {
+            System.out.println("COLLECTION: " + c.getCollectionName() + " NO.BOOKS: " + c.getCollectionBooks().size());
         }
 
         userPageBean.setUserBookCollections(this.userBookCollections);

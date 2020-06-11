@@ -37,16 +37,16 @@
                     </div>
                     <div class="ui-g-0 ui-lg-1" ></div>
                     <div class="ui-g-12 ui-md-2 ui-lg-1">
-                        <p:selectOneMenu effectSpeed="fast" styleClass="search-option">
-                            <f:selectItem itemLabel="Title" itemValue="bookTitle" />
-                            <f:selectItem itemLabel="Author" itemValue="bookAuthor" />
+                        <p:selectOneMenu effectSpeed="fast" value="#{list.searchField}" styleClass="search-option">
+                            <f:selectItem itemLabel="Title" itemValue="title" />
+                            <f:selectItem itemLabel="Author" itemValue="author" />
                         </p:selectOneMenu>
                     </div>
                     <div class="ui-g-12 ui-md-5">
-                        <p:inputText id="search-bar"/>
+                        <p:inputText id="search-bar" value="#{list.searchTerm}"/>
                     </div>
                     <div class="ui-g-12 ui-md-1">
-                        <p:commandButton value="Seach" action="list.xhtml?faces-redirect=true"/>
+                        <p:commandButton value="Seach" action="#{list.searchBook()}"/>
                     </div>
                     <div class="ui-g-12 ui-md-6 ui-lg-1">
                         <p:commandButton icon="pi pi-shopping-cart" action="cart.xhtml?faces-redirect=true" value="Cart"/>

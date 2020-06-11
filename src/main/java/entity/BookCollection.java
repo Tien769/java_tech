@@ -23,7 +23,9 @@ import javax.persistence.Column;
 @Table(name = "collection")
 @NamedQueries({ @NamedQuery(name = "BookCollection.getAll", query = "SELECT c FROM BookCollection c"),
         @NamedQuery(name = "BookCollection.searchByName", query = "SELECT c FROM BookCollection c WHERE c.collectionName = :genre"),
-        @NamedQuery(name = "BookCollection.getPremades", query = "SELECT c FROM BookCollection c WHERE c.isPromoted = true") })
+        @NamedQuery(name = "BookCollection.getPremades", query = "SELECT c FROM BookCollection c WHERE c.isPromoted = true"),
+        @NamedQuery(name = "BookCollection.getByGenre", query = "SELECT c FROM BookCollection c WHERE c.collectionGenre = :genre") 
+    })
 public class BookCollection implements Serializable {
     private static final long serialVersionUID = -5140048251055770889L;
 

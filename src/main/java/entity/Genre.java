@@ -7,11 +7,13 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "genre")
+@NamedQuery(name = "Genre.getAllGenres", query = "SELECT g FROM Genre g")
 public class Genre implements Serializable {
     private static final long serialVersionUID = 7578348807331883081L;
 

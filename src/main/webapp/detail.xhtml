@@ -22,66 +22,125 @@
             <ui:include src="header.xhtml"/>
         </ui:insert>
 
-        <div>
-            <h:form>
-                <div>
-                    <h:outputText value="#{detailPageBean.selectedBook.title}"/>
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <div class="ui-g-1" ></div>
+                <div class="ui-g-3">
+                    <p:graphicImage value="#{detailPageBean.selectedBook.cover}" style="height: 90%; width: 100%;"></p:graphicImage>
                 </div>
-                <div>
-                    <p:commandButton value="add to cart" action="#{cartPageBean.addBook()}"/>
-                </div>
-                <div style="max-width: 20%;">
+                <div class="ui-g-1"></div>
+                <div class="ui-g-6">
+                    <div class="ui-g ui-g-12">
+                        <div class="ui-g-12">
+                            <h:outputText value="#{detailPageBean.selectedBook.title}" style="font-size: 45px;font-weight: bold;" />
+                        </div>
+                        <div class="ui-g-12">
+                            <span style="font-size: 20px;"> Author: </span> 
+                            <h:outputText value="#{detailPageBean.selectedBook.author}" style="font-size: 22px; color: red;" />
+                        </div>
 
-                    <div>
-                        <p:commandButton value="Add to Collection" onclick="PF('collectionChooser').show()"/>
-                        <p:dialog widgetVar="collectionChooser">
-                            <c:set var ="userName" scope="session" value="#{userPageBean.name}"/>
-                            <c:if test="${userName != null}">
-                                <p:selectManyMenu id="userCollection" value="#{detailPageBean.selectedBookCollections}" var="c" showCheckbox="true">
-                                    <f:selectItems value="#{detailPageBean.userBookCollections}" var="collection" itemLabel="#{collection.collectionName}" itemValue="#{collection}"/>
-                                    <p:column>
-                                        <h:outputText value="#{c.collectionName}"/>
-                                    </p:column>
-                                </p:selectManyMenu>
-                                <p:commandButton value="Add to collection" action="#{detailPageBean.addBookToCollection()}"/>
-                            </c:if>
-                            <c:if test="${userName == null}">
-                                <div><h:outputText value="PLEASE LOG IN BEFORE PROCEEDING"/></div>
-                            </c:if>
-                        </p:dialog>
+                        <div class="ui-g-12">
+                            <span style="font-size: 20px;"> Price: </span>
+                            <h:outputText value="#{detailPageBean.selectedBook.price}00 Ã„â€˜" style="font-size: 22px; color: red;" />
+                        </div>
+
+                        <div class="ui-g-12">
+                            <span style="font-size: 20px;"> Rating: </span>
+                            <h:outputText value="#{detailPageBean.selectedBook.rating}" style="font-size: 22px; color: red;" />
+                            <i class="pi pi-star" style="font-size: 3em; color: yellow;"></i>
+                        </div>
+
+                        <div class ="ui-g-2">
+                            <p:commandButton class="button-buy" value="add to cart" action="#{cartPageBean.addBook()}"/>
+                        </div>
+
+                        <div class ="ui-g-3">
+                            <h:form>
+                                <p:commandButton value="Add to Library" onclick="PF('collectionChooser').show()"/>
+                                <p:dialog widgetVar="collectionChooser">
+                                    <c:set var ="userName" scope="session" value="#{userPageBean.name}"/>
+                                    <c:if test="${userName != null}">
+                                        <p:selectManyMenu id="userCollection" value="#{detailPageBean.selectedBookCollections}" var="c" showCheckbox="true">
+                                            <f:selectItems value="#{detailPageBean.userBookCollections}" var="collection" itemLabel="#{collection.collectionName}" itemValue="#{collection}"/>
+                                            <p:column>
+                                                <h:outputText value="#{c.collectionName}"/>
+                                            </p:column>
+                                        </p:selectManyMenu>
+                                        <p:commandButton value="Add to collection" action="#{detailPageBean.addBookToCollection()}"/>
+                                    </c:if>
+                                    <c:if test="${userName == null}">
+                                        <div><h:outputText value="PLEASE LOG IN BEFORE PROCEEDING"/></div>
+                                    </c:if>
+                                </p:dialog>
+                            </h:form>
+                        </div>
                     </div>
                 </div>
-            </h:form>
+            </div>
         </div>
 
-        <div>
-            <h:form>
-                <p:inputTextarea value="#{detailPageBean.userReview}"/>
-                <div>
-                    <p:commandButton value="make review" action="#{detailPageBean.makeReview()}"/>
-                </div>
-            </h:form> 
+        <div class="ui-g">
+            <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
+            <div class ="ui-g-2" style="text-align: center;">
+                <h:outputText value="Ã„ï¿½ÃƒÂ¡nh giÃƒÂ¡" style="font-size: 45px;font-weight: bold;" />
+            </div>
+            <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
+            <div class="ui-g-12">
+                <h:form>
+                    <div class="ui-g">
+                        <p:dataTable value="#{detailPageBean.bookReviews}" var="review">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="NgÃ†Â°Ã¡Â»ï¿½i dÃƒÂ¹ng"/>
+                                </f:facet>
+                                <h:outputText value="#{review.reviewUser.userName}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Ã„ï¿½ÃƒÂ¡nh giÃƒÂ¡"/>
+                                </f:facet>
+                                <h:outputText value="#{review.reviewContent}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form>
+
+                <h:form>
+                    <div class="ui-g">
+                        <div class="ui-g-1"></div>
+                        <div class="ui-g-10">
+                            <p:inputTextarea value="#{detailPageBean.userReview}" style="width: 100%; align-items: center;"/>
+                            <br />
+                            <p:commandButton value="make review" class="button-review" action="#{detailPageBean.makeReview()}"/>
+                        </div>
+                        <div class="ui-g-1"></div>
+                    </div>
+                </h:form>
+            </div>
         </div>
 
-        <div>
-            <h:form id="reviewList">
-                <p:dataTable id="reviewTable" value="#{detailPageBean.bookReviews}" var="review">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="User"/>
-                        </f:facet>
-                        <h:outputText value="#{review.reviewUser.userName}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Review"/>
-                        </f:facet>
-                        <h:outputText value="#{review.reviewContent}"/>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
+        <div class="ui-g">
+            <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
+            <div class ="ui-g-2" style="text-align: center;">
+                <h:outputText value="Other Books" style="font-size: 45px;font-weight: bold;" />
+            </div>
+            <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
+            <div class="ui-g-12">
+                <h:form>
+                    <p:dataGrid var="book" value="#{homePageBean.promotions.get(0)}" columns="5" rows="5" layout="grid">
+                        <h:commandLink action="#{detailPageBean.setSelectedBook(book.bookId)}">
+                            <p:panel style="text-align:center">
+                                <h:panelGrid columns="1" style="width:100%; background-color: #F3F6FA;">
+                                    <p:graphicImage value="#{book.cover}"/> 
+                                    <h:outputText value="#{book.title}" />
+                                    <h:outputText value="#{book.price}"/>  
+                                </h:panelGrid>
+                            </p:panel>
+                        </h:commandLink>
+                    </p:dataGrid>
+                </h:form> 
+            </div>
         </div>
-
 
         <!--FOOTER-->
         <ui:insert name="footer">

@@ -20,7 +20,7 @@ public interface DatabaseService {
 
     public List<BookCollection> getPromotedCollections();
 
-    public BookCollection getCollectionById(int collectionId);
+    public BookCollection getCollectionByGenre(Genre genre);
 
     public User getUserById(int id);
 
@@ -35,6 +35,8 @@ public interface DatabaseService {
     public Receipt makeReceipt(Integer userId, List<OrderDetail> details, Receipt receipt);
 
     public void makeReview(int userId, String reviewString, int bookId);
+
+    public List<Genre> getAllGenre();
 
     // ADMIN METHODS
 

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <title>My Web</title>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        <h:outputStylesheet name="styles2.css" library="css"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+    </h:head>
+
+    <h:body>
+        HEADER
+        <ui:insert name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+
+
+        Content
+        <div class ="detail-container">  
+            <div class ="ui-g">
+
+                <div class ="ui-g-1"></div>
+
+                <div class="ui-g-3">
+                    <p:graphicImage value="#{detailPageBean.selectedBook.cover}" style="height: 90%; width: 100%;">
+                    </p:graphicImage>
+                </div>
+
+                <div class ="ui-g-1"></div>
+
+                <div class="ui-g-6">
+                    <div class="ui-g">
+                        <div class="detail-left-container">
+
+                            <div class="ui-g-12">
+                                <h:outputText value="#{detailPageBean.selectedBook.title}" style="font-size: 45px;font-weight: bold;" />
+                            </div>
+
+                            <div class="ui-g-12">
+                                <span style="font-size: 20px;"> Tác giả: </span> 
+                                <h:outputText value="#{detailPageBean.selectedBook.author}" style="font-size: 22px; color: red;" />
+                            </div>
+
+                            <div class="ui-g-12">
+                                <span style="font-size: 20px;"> Giá: </span>
+                                <h:outputText value="#{detailPageBean.selectedBook.price}00 đ" style="font-size: 22px; color: red;" />
+                            </div>
+
+                            <div class="ui-g-12">
+                                <span style="font-size: 20px;"> Đánh giá: </span>
+                                <h:outputText value="#{detailPageBean.selectedBook.rating}" style="font-size: 22px; color: red;" />
+                                <i class="pi pi-star" style="font-size: 3em; color: yellow;"></i>
+                            </div>
+
+                            <hr />
+
+                            <div class ="ui-g-4">
+                                <p:commandButton class="button-buy" value="add to cart" action="#{cartPageBean.addBook()}"/>
+                            </div>
+
+                            <div class ="ui-g-4">
+                                <p:commandButton class="button-buy" value="add to library"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class ="ui-g-1"></div>
+            </div> 
+
+            Đánh giá
+            <div class="ui-g">
+                <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
+                <div class ="ui-g-2" style="text-align: center;">
+                    <h:outputText value="Đánh giá" style="font-size: 45px;font-weight: bold;" />
+                </div>
+                <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
+                <div class="ui-g-12">
+                    <h:form>
+                        <div class="ui-g">
+                            <p:dataTable value="#{detailPageBean.bookReviews}" var="review">
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Người dùng"/>
+                                    </f:facet>
+                                    <h:outputText value="#{review.reviewUser.userName}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Đánh giá"/>
+                                    </f:facet>
+                                    <h:outputText value="#{review.reviewContent}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+                    </h:form>
+
+                    <h:form>
+                        <div class="ui-g">
+                            <div class="ui-g-1"></div>
+                            <div class="ui-g-10">
+                                <p:inputTextarea value="#{detailPageBean.userReview}" style="width: 100%; align-items: center;"/>
+                                <br />
+                                <p:commandButton value="make review" class="button-review" action="#{detailPageBean.makeReview()}"/>
+                            </div>
+                            <div class="ui-g-1"></div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+            Xem thêm
+            <div class="ui-g">
+                <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
+                <div class ="ui-g-2" style="text-align: center;">
+                    <h:outputText value="Xem thêm" style="font-size: 45px;font-weight: bold;" />
+                </div>
+                <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
+                <div class="ui-g-12">
+                    <h:form>
+                        <p:dataGrid var="book" value="#{homePageBean.promotions.get(0)}" columns="5" rows="5" layout="grid">
+                            <h:commandLink action="#{detailPageBean.setSelectedBook(book.bookId)}">
+                                <p:panel style="text-align:center">
+                                    <h:panelGrid columns="1" style="width:100%; background-color: #F3F6FA;">
+                                        <p:graphicImage value="#{book.cover}"/> 
+                                        <h:outputText value="#{book.title}" />
+                                        <h:outputText value="#{book.price}"/>  
+                                    </h:panelGrid>
+                                </p:panel>
+                            </h:commandLink>
+                        </p:dataGrid>
+                    </h:form> 
+                </div>
+            </div>
+        </div>
+        FOOTER
+        <ui:insert name="footer">
+            <ui:include src="footer.xhtml"/>
+        </ui:insert>
+    </h:body>
+</html>
+

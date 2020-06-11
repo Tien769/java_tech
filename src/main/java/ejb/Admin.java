@@ -37,7 +37,8 @@ public class Admin implements AdminService {
 
     @Override
     public BookCollection readBookCollection(int id) {
-        return db.getCollectionById(id);
+        // return db.getCollectionByGenre(id);
+        return new BookCollection();
     }
 
     @Override

@@ -1,18 +1,16 @@
 package managedbean;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import ejb.DatabaseService;
-import entity.Book;
-import entity.BookCollection;
+import entity.*;
 
 @Named("list")
 @SessionScoped
@@ -20,15 +18,24 @@ public class ListPageBean extends BaseBean {
     private static final long serialVersionUID = -7900371187282104730L;
     @EJB
     DatabaseService db;
-    private Set<Integer> selectedFilter;
+    private List<Genre> selectedFilter;
+    private List<Genre> filters;
     private List<Book> books;
     private boolean isRefreshed;
+    private String searchTerm;
+    private String searchField;
+    private String searchResultTerm;
 
     // ------------------------------------------CONSTRUCTOR------------------------------------------
     public ListPageBean() {
         isRefreshed = false;
         books = new ArrayList<Book>();
-        selectedFilter = new HashSet<Integer>();
+        selectedFilter = new ArrayList<Genre>();
+    }
+
+    @PostConstruct
+    public void loadGenres() {
+        this.filters = db.getAllGenre();
     }
 
     // ------------------------------------------PAGE_FUNCTION------------------------------------------
@@ -40,28 +47,46 @@ public class ListPageBean extends BaseBean {
         return "detail.xhtml?faces-redirect=true";
     }
 
-    public void searchBook(String field, String searchTerm) { // Search for book by title or author
+    public String searchBook() { // Search for book by title or author
         books = new ArrayList<Book>();
-        if (field.isEmpty() || searchTerm.isEmpty()) {
+        if (searchTerm.isEmpty()) {
             books = this.db.getAllBooks();
+        } else {
+            books = this.db.getBooks(searchField, searchTerm);
         }
-        books = this.db.getBooks(field, searchTerm);
+        searchResultTerm = searchTerm;
+        searchTerm = "";
+        return "list.xhtml?faces-redirect=true";
     }
 
-    public void searchByFilter() { // Apply filter to result list
-        for (int filterOption : selectedFilter) {
-            BookCollection temp = this.db.getCollectionById(filterOption);
-            filterBookList(temp.getCollectionBooks());
+    public String searchByFilter() { // Apply filter to result list
+        if (selectedFilter.size() != 0) {
+            for (Genre filterOption : selectedFilter) {
+                searchTerm = searchResultTerm;
+                searchBook();
+
+                System.out.println("CURRENT NUMBER OF BOOKS: " + books.size());
+
+                BookCollection temp = this.db.getCollectionByGenre(filterOption);
+                System.out.println("GETTING COLLECTION FOR FILTERING: " + temp.getCollectionName() + " NUM OF BOOKS: "
+                        + temp.getCollectionBooks().size());
+                filterBookList(temp.getCollectionBooks());
+                System.out.println("UPDATED NUMBER OF BOOKS: " + books.size());
+            }
+        } else {
+            searchTerm = searchResultTerm;
+            searchBook();
         }
-        return;
+
+        return "list.xhtml?faces-redirect=true";
     }
 
     // ------------------------------------------ACCESSORS------------------------------------------
-    public Set<Integer> getSelectedFilter() {
+    public List<Genre> getSelectedFilter() {
         return selectedFilter;
     }
 
-    public void setSelectedFilter(Set<Integer> selectedFilter) {
+    public void setSelectedFilter(List<Genre> selectedFilter) {
         this.selectedFilter = selectedFilter;
     }
 
@@ -79,6 +104,38 @@ public class ListPageBean extends BaseBean {
 
     public void setRefreshed(boolean isRefreshed) {
         this.isRefreshed = isRefreshed;
+    }
+
+    public String getSearchTerm() {
+        return searchTerm;
+    }
+
+    public void setSearchTerm(String searchTerm) {
+        this.searchTerm = searchTerm;
+    }
+
+    public String getSearchField() {
+        return searchField;
+    }
+
+    public void setSearchField(String searchField) {
+        this.searchField = searchField;
+    }
+
+    public List<Genre> getFilters() {
+        return filters;
+    }
+
+    public void setFilters(List<Genre> filters) {
+        this.filters = filters;
+    }
+
+    public String getSearchResultTerm() {
+        return searchResultTerm;
+    }
+
+    public void setSearchResultTerm(String searchResultTerm) {
+        this.searchResultTerm = searchResultTerm;
     }
 
     // ------------------------------------------PRIVATE_METHOD------------------------------------------
