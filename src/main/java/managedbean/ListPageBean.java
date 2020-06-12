@@ -41,9 +41,14 @@ public class ListPageBean extends BaseBean {
     // ------------------------------------------PAGE_FUNCTION------------------------------------------
 
     public String setSelectedBook(int bookId) {
+        System.out.println("LIST 1");
+        System.out.println(bookId);
         Book b = db.getBookById(bookId);
+        System.out.println("LIST 2");
         System.out.println("LIST SELECTED BOOK: " + b.getTitle());
+        System.out.println("LIST 3");
         FacesContext.getCurrentInstance().getExternalContext().getFlash().put("selectedBook", b);
+        System.out.println("LIST 4");
         return "detail.xhtml?faces-redirect=true";
     }
 

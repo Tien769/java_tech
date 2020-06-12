@@ -143,9 +143,11 @@ public class Database implements DatabaseService {
     // Update an account
     public User updateAccount(User user) {
         em.merge(user);
-        // System.out.println("NUMBER OF BOOKS IN LIBRARY: " + user.getUserCollections().get(0).getCollectionBooks().size());
+        // System.out.println("NUMBER OF BOOKS IN LIBRARY: " +
+        // user.getUserCollections().get(0).getCollectionBooks().size());
         User updatedUser = this.verifyLogin(user.getUserMail(), user.getUserPassword());
-        // System.out.println("NUMBER OF BOOKS IN LIBRARY: " + updatedUser.getUserCollections().get(0).getCollectionBooks().size());
+        // System.out.println("NUMBER OF BOOKS IN LIBRARY: " +
+        // updatedUser.getUserCollections().get(0).getCollectionBooks().size());
         return updatedUser;
     }
 
@@ -249,12 +251,12 @@ public class Database implements DatabaseService {
     }
 
     @Override
-    public void makeReview(int userId, String reviewString, int bookId) {
-        Review review = new Review();
-        review.setReviewBook(this.getBookById(bookId));
-        review.setReviewUser(this.getUserById(userId));
-        review.setReviewContent(reviewString);
+    public User makeReview(int userId, String reviewString, int bookId) {
+        User user = em.find(User.class, userId);
+        Book book = em.find(Book.class, bookId);
+        Review review = new Review(reviewString, book, user);
         em.merge(review);
+        return this.verifyLogin(user.getUserMail(), user.getUserPassword());
     }
 
 }

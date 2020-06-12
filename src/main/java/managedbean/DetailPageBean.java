@@ -52,7 +52,6 @@ public class DetailPageBean extends BaseBean {
 
     // PAGE FUNCTION
     public String makeReview() {
-        System.out.println("USER REVIEW: " + userReview);
         userPageBean.makeReview(userReview, selectedBook.getBookId());
         return listPageBean.setSelectedBook(this.selectedBook.getBookId());
     }

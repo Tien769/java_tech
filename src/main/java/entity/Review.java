@@ -81,4 +81,13 @@ public class Review implements Serializable {
 		return true;
 	}
 
+	public Review(String reviewContent, Book reviewBook, User reviewUser) {
+		this.reviewContent = reviewContent;
+		this.reviewBook = reviewBook;
+		this.reviewUser = reviewUser;
+	}
+
+	public Review() {
+	}
+
 }

@@ -49,8 +49,8 @@ public class Account implements AccountService {
     }
 
     @Override
-    public void makeReview(int userId, String reviewString, int bookId) {
-        db.makeReview(userId, reviewString, bookId);
+    public User makeReview(int userId, String reviewString, int bookId) {
+        return db.makeReview(userId, reviewString, bookId);
     }
 
     @Override

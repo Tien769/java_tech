@@ -123,12 +123,17 @@ public class UserPageBean extends BaseBean {
             this.userBookCollections = null;
             this.userReceipts = null;
             this.userReviews = null;
+            System.out.println("REVIEWS IS NOW NULL");
         }
 
     }
 
     public void makeReview(String reviewString, int bookId) {
-        as.makeReview(this.getUser().getUserId(), reviewString, bookId);
+        this.user = as.makeReview(this.getUser().getUserId(), reviewString, bookId);
+        updateBean();
+        for (Review r : this.userReviews) {
+            System.out.println("REVIEW: + " + r.getReviewContent());
+        }
     }
 
     public String addCollection() {
