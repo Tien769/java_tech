@@ -17,7 +17,7 @@ public class Review implements Serializable {
     private String reviewContent;
 
     @Id
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bookid")
     private Book reviewBook;
     
@@ -79,6 +79,15 @@ public class Review implements Serializable {
 		} else if (!reviewUser.equals(other.reviewUser))
 			return false;
 		return true;
+	}
+
+	public Review(String reviewContent, Book reviewBook, User reviewUser) {
+		this.reviewContent = reviewContent;
+		this.reviewBook = reviewBook;
+		this.reviewUser = reviewUser;
+	}
+
+	public Review() {
 	}
 
 }

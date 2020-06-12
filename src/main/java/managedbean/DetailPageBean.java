@@ -46,15 +46,17 @@ public class DetailPageBean extends BaseBean {
 
     @PostConstruct
     public void initialize() {
-        loadBook();
+        // loadBook();
+        selectedBook = listPageBean.getSelectedBook();
         userBookCollections = userPageBean.getUserBookCollections();
+        cart.setRequestBookId(selectedBook.getBookId());
+        this.bookReviews = this.selectedBook.getBookReviews();
     }
 
     // PAGE FUNCTION
     public String makeReview() {
-        System.out.println("USER REVIEW: " + userReview);
         userPageBean.makeReview(userReview, selectedBook.getBookId());
-        return listPageBean.setSelectedBook(this.selectedBook.getBookId());
+        return "detail.xhtml?faces-redirect=true";
     }
 
     // ACCESSORS
@@ -101,9 +103,7 @@ public class DetailPageBean extends BaseBean {
         userPageBean.setUserBookCollections(this.userBookCollections);
         // userPageBean.updateAccount();
         userPageBean.modifyLibrary();
-        listPageBean.setSelectedBook(this.selectedBook.getBookId());
-
-        return "detail.xhtml?faces-redirect=true";
+        return listPageBean.selectBook(this.selectedBook.getBookId());
     }
 
     // PRIVATE METHODS
@@ -111,7 +111,6 @@ public class DetailPageBean extends BaseBean {
     private void loadBook() {
         this.selectedBook = (Book) FacesContext.getCurrentInstance().getExternalContext().getFlash()
                 .get("selectedBook");
-        System.out.println("DETAIL SELECTED BOOK ID: " + this.selectedBook.getBookId());
         cart.setRequestBookId(selectedBook.getBookId());
         this.bookReviews = this.selectedBook.getBookReviews();
     }

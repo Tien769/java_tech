@@ -53,6 +53,7 @@ public class Database implements DatabaseService {
         Book book = em.find(Book.class, id);
         book.getBookGenreList().size();
         book.getBookReviews().size();
+        System.out.println("NUMBER OF REVIEWS: " + book.getBookReviews().size());
         return book;
     }
 
@@ -130,6 +131,10 @@ public class Database implements DatabaseService {
         user.getUserReceipts().size();
         for (Receipt r : user.getUserReceipts()) {
             r.getOrderDetails().size();
+            for (OrderDetail o : r.getOrderDetails()) {
+                o.getOrderBook();
+                o.getAmount();
+            }
         }
         return user;
     }
@@ -143,9 +148,7 @@ public class Database implements DatabaseService {
     // Update an account
     public User updateAccount(User user) {
         em.merge(user);
-        // System.out.println("NUMBER OF BOOKS IN LIBRARY: " + user.getUserCollections().get(0).getCollectionBooks().size());
         User updatedUser = this.verifyLogin(user.getUserMail(), user.getUserPassword());
-        // System.out.println("NUMBER OF BOOKS IN LIBRARY: " + updatedUser.getUserCollections().get(0).getCollectionBooks().size());
         return updatedUser;
     }
 
@@ -158,17 +161,19 @@ public class Database implements DatabaseService {
     }
 
     // Make Receipt
-    public Receipt makeReceipt(Integer userId, List<OrderDetail> details, Receipt receipt) {
-        receipt.setUser(this.getUserById(userId));
+    public User makeReceipt(Integer userId, List<OrderDetail> details, Receipt receipt) {
+        User user = em.find(User.class, userId);
+        receipt.setOrderUser(user);
         for (OrderDetail o : details) {
             o.setDetailOrder(receipt);
             o.getOrderBook().hashCode();
             o.getDetailOrder().hashCode();
-            // em.persist(o);
             receipt.addOrderDetail(o);
         }
-        em.persist(receipt);
-        return receipt;
+        em.merge(receipt);
+        user = this.verifyLogin(user.getUserMail(), user.getUserPassword());
+        System.out.println("DATABASE NEW NUMBER OF ORDERS: " + user.getUserReceipts().size());
+        return user;
     }
 
     // ------------------------------------GENRE------------------------------------
@@ -249,12 +254,12 @@ public class Database implements DatabaseService {
     }
 
     @Override
-    public void makeReview(int userId, String reviewString, int bookId) {
-        Review review = new Review();
-        review.setReviewBook(this.getBookById(bookId));
-        review.setReviewUser(this.getUserById(userId));
-        review.setReviewContent(reviewString);
-        em.merge(review);
+    public User makeReview(int userId, String reviewString, int bookId) {
+        User user = em.find(User.class, userId);
+        Book book = em.find(Book.class, bookId);
+        Review review = new Review(reviewString, book, user);
+        em.persist(review);
+        return this.verifyLogin(user.getUserMail(), user.getUserPassword());
     }
 
 }

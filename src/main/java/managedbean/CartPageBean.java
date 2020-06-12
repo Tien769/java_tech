@@ -66,8 +66,10 @@ public class CartPageBean extends BaseBean {
             return "cart.xhtml?faces-redirect=true";
         generateReceipt();
         // make transaction
-        System.out.println("I'm in managedBean.CartPageBean.buy()");
-        sc.makeReceipt(userPageBean.getUser().getUserId(), makeDetails(this.receipt), this.receipt);
+        System.out.println("ORIGINAL NUMBER OF ORDERS: " + userPageBean.getUserReceipts().size());
+        userPageBean.setUser(sc.makeReceipt(userPageBean.getUser(), makeDetails(this.receipt), this.receipt));
+        userPageBean.updateBean();
+        removeAll();
         return "paypal.xhtml?faces-redirect=true";
     }
 

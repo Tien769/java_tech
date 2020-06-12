@@ -65,14 +65,6 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-    public Integer getBookid() {
-        return bookId;
-    }
-
-    public void setBookid(Integer bookid) {
-        this.bookId = bookid;
-    }
-
     public String getTitle() {
         return title;
     }

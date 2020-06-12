@@ -32,9 +32,9 @@ public interface DatabaseService {
 
     public Receipt getReceiptById(int id);
 
-    public Receipt makeReceipt(Integer userId, List<OrderDetail> details, Receipt receipt);
+    public User makeReceipt(Integer userId, List<OrderDetail> details, Receipt receipt);
 
-    public void makeReview(int userId, String reviewString, int bookId);
+    public User makeReview(int userId, String reviewString, int bookId);
 
     public List<Genre> getAllGenre();
 

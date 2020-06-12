@@ -53,10 +53,6 @@ public class Receipt implements Serializable {
         this.total = total;
     }
 
-    public void setUser(User user) {
-        orderUser = user;
-    }
-
     public void addOrderDetail(OrderDetail detail) {
         orderDetails.add(detail);
     }

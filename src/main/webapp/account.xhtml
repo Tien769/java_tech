@@ -89,9 +89,9 @@
             <div class="ui-g-2">
                 <h:form>
                     <p:menu style="background-color: mediumaquamarine; width: 100%;">
-                        <p:menuitem value ="My Order" url="#" />
-                        <p:menuitem value ="My library" url="#" />
-                        <p:menuitem value ="My Reviews" url="#"/>
+                        <p:menuitem value ="My Order" action="buyhistory.xhtml?faces-redirect=true" />
+                        <p:menuitem value ="My library" action="library.xhtml?faces-redirect=true" />
+                        <p:menuitem value ="My Reviews" action="reviews.xhtml?faces-redirect=true"/>
                         <p:menuitem value ="Sign out" action="#{userPageBean.signOut()}" update="navigation-bar-form"/>
                     </p:menu>
                 </h:form>

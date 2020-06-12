@@ -10,6 +10,7 @@ import javax.ejb.Stateful;
 import entity.Book;
 import entity.OrderDetail;
 import entity.Receipt;
+import entity.User;
 
 @Stateful
 public class ShoppingCart implements ShoppingCartService {
@@ -65,8 +66,17 @@ public class ShoppingCart implements ShoppingCartService {
         return total;
     }
 
-    public void makeReceipt(int userId, List<OrderDetail> details, Receipt receipt) {
-        db.makeReceipt(userId, details, receipt);
+    public User makeReceipt(User user, List<OrderDetail> details, Receipt receipt) {
+        receipt.setOrderUser(user);
+        for (OrderDetail o : details) {
+            o.setDetailOrder(receipt);
+            o.getOrderBook().hashCode();
+            o.getDetailOrder().hashCode();
+            receipt.addOrderDetail(o);
+        }
+        user.getUserReceipts().add(receipt);
+        User updatedUser= db.updateAccount(user);
+        return updatedUser;
     }
 
     public Receipt getReceipt() {

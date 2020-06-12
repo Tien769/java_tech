@@ -49,8 +49,20 @@ public class Account implements AccountService {
     }
 
     @Override
-    public void makeReview(int userId, String reviewString, int bookId) {
-        db.makeReview(userId, reviewString, bookId);
+    public User makeReview(User user, String reviewString, int bookId) {
+        Book book = db.getBookById(bookId);
+        Review review = new Review(reviewString, book, user);
+        for(Review r : user.getUserReviews()){
+            if(r.getReviewUser() == user && r.getReviewBook().getBookId() == bookId){
+                System.out.println("MAKING CHANGE TO PAST REVIEW");
+                r.setReviewContent(reviewString);
+                return db.updateAccount(user);
+            }
+        }
+        user.getUserReviews().add(review);
+        book.getBookReviews().add(review);
+        db.update(book);
+        return db.updateAccount(user);
     }
 
     @Override

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
@@ -29,6 +30,8 @@ public class UserPageBean extends BaseBean {
     private List<Review> userReviews;
     @EJB
     private AccountService as;
+    @Inject
+    private ListPageBean listPageBean;
 
     // ------------------------------------------CONSTRUCTOR------------------------------------------
 
@@ -39,7 +42,6 @@ public class UserPageBean extends BaseBean {
         userReceipts = new ArrayList<Receipt>();
         userReviews = new ArrayList<Review>();
     }
-
     // ------------------------------------------BEAN_FUNCTION------------------------------------------
 
     public String signIn() { // Sign in
@@ -104,7 +106,7 @@ public class UserPageBean extends BaseBean {
         }
     }
 
-    private void updateBean() {
+    public void updateBean() {
         if (user != null) {
             this.name = user.getUserName();
             this.email = user.getUserMail();
@@ -124,11 +126,12 @@ public class UserPageBean extends BaseBean {
             this.userReceipts = null;
             this.userReviews = null;
         }
-
     }
 
     public void makeReview(String reviewString, int bookId) {
-        as.makeReview(this.getUser().getUserId(), reviewString, bookId);
+        this.user = as.makeReview(this.getUser(), reviewString, bookId);
+        listPageBean.selectBook(bookId);
+        updateBean();
     }
 
     public String addCollection() {

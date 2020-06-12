@@ -25,6 +25,7 @@ public class ListPageBean extends BaseBean {
     private String searchTerm;
     private String searchField;
     private String searchResultTerm;
+    private Book selectedBook;
 
     // ------------------------------------------CONSTRUCTOR------------------------------------------
     public ListPageBean() {
@@ -40,12 +41,13 @@ public class ListPageBean extends BaseBean {
 
     // ------------------------------------------PAGE_FUNCTION------------------------------------------
 
-    public String setSelectedBook(int bookId) {
-        Book b = db.getBookById(bookId);
-        System.out.println("LIST SELECTED BOOK: " + b.getTitle());
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("selectedBook", b);
-        return "detail.xhtml?faces-redirect=true";
-    }
+    // public String setSelectedBook(int bookId) {
+    // System.out.println(bookId);
+    // Book b = db.getBookById(bookId);
+    // FacesContext.getCurrentInstance().getExternalContext().getFlash().put("selectedBook",
+    // b);
+    // return "detail.xhtml?faces-redirect=true";
+    // }
 
     public String searchBook() { // Search for book by title or author
         books = new ArrayList<Book>();
@@ -79,6 +81,13 @@ public class ListPageBean extends BaseBean {
         }
 
         return "list.xhtml?faces-redirect=true";
+    }
+
+    public String selectBook(int bookId) {
+        Book b = db.getBookById(bookId);
+        this.selectedBook = b;
+        // System.out.println("NUMBER OF REVIEWS: " + this.selectedBook.getBookReviews().size());
+        return "detail.xhtml?faces-redirect=true";
     }
 
     // ------------------------------------------ACCESSORS------------------------------------------
@@ -156,6 +165,14 @@ public class ListPageBean extends BaseBean {
             }
             books = temp;
         }
+    }
+
+    public Book getSelectedBook() {
+        return selectedBook;
+    }
+
+    public void setSelectedBook(Book book) {
+        this.selectedBook = book;
     }
 
 }

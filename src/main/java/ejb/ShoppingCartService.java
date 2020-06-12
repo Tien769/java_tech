@@ -29,7 +29,7 @@ public interface ShoppingCartService {
 
     public void setCartItems(Map<Book, Integer> cartItems);
 
-    public void makeReceipt(int userId, List<OrderDetail> details, Receipt receipt);
+    public User makeReceipt(User user, List<OrderDetail> details, Receipt receipt);
 
     public Receipt getReceipt();
 }
