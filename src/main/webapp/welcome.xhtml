@@ -19,31 +19,23 @@
         <ui:insert  name="header">
             <ui:include src="header.xhtml"/>
         </ui:insert>
-
-        <br></br>
-
-
+       
         <!--BANNER-->
-        <div class="ui-g-2"></div>
-        <div class="ui-g-8">
-            <b:image library="images" name="banner.png" style="display: block; width: 80%; margin: auto;"/>
+        <div class="ui-g-12" id="banner">
+            <h:panelGroup id="group">
+                <h:graphicImage id="imgbanner" library="images" name="banner1.jpg"/>
+            </h:panelGroup>
         </div>
-        <div class="ui-g-2"></div>
-
 
         <!--CONTENT-->
         <div class="content">
             <div class="ui-g-12">
                 <div class="ui-g-1"></div>
                 <div class="ui-g-10">
-                    <div class="ui-g">
-                        <div class="ui-g-12" >
-                            <div class="ui-g-4"></div>
-                            <div class="ui-g-4" style="text-align: center; background-color: #EED971FF; height: 60px">
-                                <p:outputLabel style="font-weight: bold; font-size: 30px; margin-bottom: 20px; text-align: center; color: #79C000FF;" value="Sales Off"/>
-                            </div>
-                        </div>
+                    <div class="ui-g" style="background-color: #59A584;">
+                        <h:outputText id="txtsaleoff" value="Sales Off"/>
                     </div>
+                    <br/>
                     <h:form>
                         <p:dataGrid var="book" value="#{homePageBean.promotions.get(0)}" columns="4" rows="12" layout="grid">
                             <h:commandLink action="#{list.selectBook(book.bookId)}">
@@ -61,24 +53,27 @@
                 <div class="ui-g-1"></div>
             </div>
         </div>
-
+        <br/>
         <div class="content">
             <div class="ui-g-12">
                 <div class="ui-g-1"></div>
                 <div class="ui-g-10">
-                    <div class="ui-g">
-                        <div class="ui-g-12" >
-                            <div class="ui-g-4"></div>
-                            <div class="ui-g-4" style="text-align: center; background-color: #EED971FF; height: 60px">
-                                <p:outputLabel style="font-weight: bold; font-size: 30px; margin-bottom: 20px; text-align: center; color: #79C000FF;" value="Featured Product"/>
-                            </div>
-                        </div>
-                    </div>     
+                    <div class="ui-g" style="background-color: #59A584;">
+                        <h:outputText id="txtfeatured" value="Featured Product"/>
+                    </div>
+                    <br/>
                     <h:form>
+<<<<<<< HEAD
                         <p:dataGrid var="book" value="#{homePageBean.promotions.get(1)}" columns="4" rows="12" layout="grid">
                             <h:commandLink action="#{list.selectBook(book.bookId)}">
                                 <p:panel style="text-align:center; ">
                                     <h:panelGrid columns="1" style="width:100%; background-color: #F3F6FA;">
+=======
+                        <p:dataGrid var="book" value="#{homePageBean.promotions.get(1)}" columns="3" rows="9" layout="grid">
+                            <h:commandLink action="#{list.setSelectedBook(book.bookId)}">
+                                <p:panel style="text-align:center;">
+                                    <h:panelGrid columns="1" style="width:100%;font-weight: bold">
+>>>>>>> 94fbe6c2ef39a8c9ac8c32d6f46f27ee3d4898b6
                                         <p:graphicImage value="#{book.cover}"/> 
                                         <h:outputText value="#{book.title}" />
                                         <h:outputText value="#{book.price}"/>
@@ -91,7 +86,7 @@
                 <div class="ui-g-1"></div>
             </div>
         </div>
-
+        <br/>
         <!--FOOTER-->
         <ui:insert name="footer">
             <ui:include src="footer.xhtml"/>
