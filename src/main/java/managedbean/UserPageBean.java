@@ -125,6 +125,7 @@ public class UserPageBean extends BaseBean {
             this.userBookCollections = null;
             this.userReceipts = null;
             this.userReviews = null;
+            System.out.println("REVIEWS IS NOW NULL");
         }
     }
 

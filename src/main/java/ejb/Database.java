@@ -258,7 +258,11 @@ public class Database implements DatabaseService {
         User user = em.find(User.class, userId);
         Book book = em.find(Book.class, bookId);
         Review review = new Review(reviewString, book, user);
+<<<<<<< HEAD
         em.persist(review);
+=======
+        em.merge(review);
+>>>>>>> 94fbe6c2ef39a8c9ac8c32d6f46f27ee3d4898b6
         return this.verifyLogin(user.getUserMail(), user.getUserPassword());
     }
 
