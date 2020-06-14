@@ -63,17 +63,10 @@
                     </div>
                     <br/>
                     <h:form>
-<<<<<<< HEAD
-                        <p:dataGrid var="book" value="#{homePageBean.promotions.get(1)}" columns="4" rows="12" layout="grid">
-                            <h:commandLink action="#{list.selectBook(book.bookId)}">
-                                <p:panel style="text-align:center; ">
-                                    <h:panelGrid columns="1" style="width:100%; background-color: #F3F6FA;">
-=======
                         <p:dataGrid var="book" value="#{homePageBean.promotions.get(1)}" columns="3" rows="9" layout="grid">
-                            <h:commandLink action="#{list.setSelectedBook(book.bookId)}">
+                            <h:commandLink action="#{list.selectBook(book.bookId)}">
                                 <p:panel style="text-align:center;">
                                     <h:panelGrid columns="1" style="width:100%;font-weight: bold">
->>>>>>> 94fbe6c2ef39a8c9ac8c32d6f46f27ee3d4898b6
                                         <p:graphicImage value="#{book.cover}"/> 
                                         <h:outputText value="#{book.title}" />
                                         <h:outputText value="#{book.price}"/>
