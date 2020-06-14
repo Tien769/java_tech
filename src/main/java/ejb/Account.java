@@ -52,8 +52,8 @@ public class Account implements AccountService {
     public User makeReview(User user, String reviewString, int bookId) {
         Book book = db.getBookById(bookId);
         Review review = new Review(reviewString, book, user);
-        for(Review r : user.getUserReviews()){
-            if(r.getReviewUser() == user && r.getReviewBook().getBookId() == bookId){
+        for (Review r : user.getUserReviews()) {
+            if (r.getReviewUser() == user && r.getReviewBook().getBookId() == bookId) {
                 System.out.println("MAKING CHANGE TO PAST REVIEW");
                 r.setReviewContent(reviewString);
                 return db.updateAccount(user);
@@ -70,4 +70,8 @@ public class Account implements AccountService {
         return db.updateAccount(user);
     }
 
+    @Override
+    public User deleteCollection(User user, BookCollection collection) {
+        return db.deleteCollection(user, collection);
+    }
 }

@@ -34,6 +34,7 @@ public interface AdminService {
 
     public void delete(User user);
 
+
     public List<Book> readAllBook();
 
     public List<BookCollection> readAllBookCollection();

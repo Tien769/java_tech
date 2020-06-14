@@ -26,6 +26,7 @@ public class UserPageBean extends BaseBean {
     private int selectedCollectionId;
     private String newCollectionName;
     private List<BookCollection> userBookCollections;
+    private BookCollection selectedCollection;
     private List<Receipt> userReceipts;
     private List<Review> userReviews;
     @EJB
@@ -142,19 +143,78 @@ public class UserPageBean extends BaseBean {
         return "account.xhtml?faces-redirect=true";
     }
 
-    public String deleteCollection() {
-        this.user.getUserCollections().remove(new BookCollection(this.selectedCollectionId, "whatever"));
-        this.user = as.syncAccount(this.user);
+    public String deleteCollection(BookCollection collection) {
+        System.out.println("NUMBER OF COLLECTION: " + this.userBookCollections.size());
+        // this.userBookCollections.size());
+        System.out.println("DELETING COLLECTION: " + collection.getCollectionName());
+        this.userBookCollections.remove(collection);
+        // System.out.println("NUMBER OF COLLECTION: " + this.user
+        // this.userBookCollections.size());
+
+        this.user.setUserCollections(this.userBookCollections);
+        this.user = as.deleteCollection(this.user, collection);
         updateBean();
+
+        System.out.println("UPDATED NUMBER OF COLLECTION: " + this.userBookCollections.size());
         return "account.xhtml?faces-redirect=true";
     }
 
-    public void modifyLibrary() {
+    public String modifyLibrary() {
         this.user.setUserCollections(this.userBookCollections);
         this.user = as.syncAccount(this.user);
         updateBean();
+        return "success";
     }
+
+    public String modifyLibrary(BookCollection viewCollection, List<Book> deletingBooks) {
+        for (BookCollection c : this.userBookCollections) {
+            if (c.equals(viewCollection)) {
+                System.out.println("FOUND COLLECTION TO MODIFY: " + c.getCollectionName());
+            }
+            c.getCollectionBooks().removeAll(deletingBooks);
+        }
+        this.modifyLibrary();
+        return viewCollection(viewCollection.getCollectionName());
+    }
+
+    public String viewCollection(BookCollection collection) {
+        this.selectedCollection = collection;
+        System.out.println("SELECTED COLLECTION: " + collection.getCollectionName());
+        return "library.xhtml?faces-redirect=true";
+    }
+
+    public String viewCollection(String name) {
+        for (BookCollection c : this.userBookCollections) {
+            if (c.getCollectionName().equals(name))
+                return this.viewCollection(c);
+        }
+        return "Can't find collection";
+    }
+
     // ------------------------------------------ACESSORS------------------------------------------
+
+    public String getUserName() {
+        if (name.length() == 0 || name == null) {
+            return "Login";
+        }
+        return name;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getEmail() {
         return email;
@@ -170,17 +230,6 @@ public class UserPageBean extends BaseBean {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getUserName() {
-        if (name.length() == 0 || name == null) {
-            return "Login";
-        }
-        return name;
-    }
-
-    public void setUserName(String name) {
-        this.name = name;
     }
 
     public String getAddress() {
@@ -199,12 +248,20 @@ public class UserPageBean extends BaseBean {
         this.phone = phone;
     }
 
-    public String getName() {
-        return name;
+    public int getSelectedCollectionId() {
+        return selectedCollectionId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSelectedCollectionId(int selectedCollectionId) {
+        this.selectedCollectionId = selectedCollectionId;
+    }
+
+    public String getNewCollectionName() {
+        return newCollectionName;
+    }
+
+    public void setNewCollectionName(String newCollectionName) {
+        this.newCollectionName = newCollectionName;
     }
 
     public List<BookCollection> getUserBookCollections() {
@@ -213,6 +270,14 @@ public class UserPageBean extends BaseBean {
 
     public void setUserBookCollections(List<BookCollection> userBookCollections) {
         this.userBookCollections = userBookCollections;
+    }
+
+    public BookCollection getSelectedCollection() {
+        return selectedCollection;
+    }
+
+    public void setSelectedCollection(BookCollection selectedCollection) {
+        this.selectedCollection = selectedCollection;
     }
 
     public List<Receipt> getUserReceipts() {
@@ -229,29 +294,5 @@ public class UserPageBean extends BaseBean {
 
     public void setUserReviews(List<Review> userReviews) {
         this.userReviews = userReviews;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public int getSelectedCollection() {
-        return selectedCollectionId;
-    }
-
-    public void setSelectedCollection(int selectedCollectionId) {
-        this.selectedCollectionId = selectedCollectionId;
-    }
-
-    public String getNewCollectionName() {
-        return newCollectionName;
-    }
-
-    public void setNewCollectionName(String newCollectionName) {
-        this.newCollectionName = newCollectionName;
     }
 }

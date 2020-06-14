@@ -15,6 +15,8 @@ public interface AccountService {
 
     public void logOut();
 
+    public User deleteCollection(User user, BookCollection collection);
+
     public User getCurrentUser();
 
     public void setCurrentUser(User user);

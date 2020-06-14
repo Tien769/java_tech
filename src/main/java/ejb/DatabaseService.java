@@ -38,6 +38,8 @@ public interface DatabaseService {
 
     public List<Genre> getAllGenre();
 
+    public User deleteCollection(User user, BookCollection collection);
+
     // ADMIN METHODS
 
     public void create(Book book);

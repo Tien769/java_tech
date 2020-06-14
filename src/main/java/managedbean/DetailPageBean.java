@@ -13,7 +13,6 @@ import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
 @Named
@@ -108,12 +107,12 @@ public class DetailPageBean extends BaseBean {
 
     // PRIVATE METHODS
 
-    private void loadBook() {
-        this.selectedBook = (Book) FacesContext.getCurrentInstance().getExternalContext().getFlash()
-                .get("selectedBook");
-        cart.setRequestBookId(selectedBook.getBookId());
-        this.bookReviews = this.selectedBook.getBookReviews();
-    }
+    // private void loadBook() {
+    //     this.selectedBook = (Book) FacesContext.getCurrentInstance().getExternalContext().getFlash()
+    //             .get("selectedBook");
+    //     cart.setRequestBookId(selectedBook.getBookId());
+    //     this.bookReviews = this.selectedBook.getBookReviews();
+    // }
 
     public List<BookCollection> getSelectedBookCollections() {
         return selectedBookCollections;

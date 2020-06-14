@@ -57,7 +57,7 @@
                         <div class ="ui-g-3">
                             <h:form>
                                 <p:commandButton value="Add to Library" onclick="PF('collectionChooser').show()"/>
-                                <p:dialog widgetVar="collectionChooser">
+                                <p:dialog widgetVar="collectionChooser" modal="true">
                                     <c:set var ="userName" scope="session" value="#{userPageBean.name}"/>
                                     <c:if test="${userName != null}">
                                         <p:selectManyMenu id="userCollection" value="#{detailPageBean.selectedBookCollections}" var="c" showCheckbox="true">

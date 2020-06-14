@@ -32,7 +32,7 @@ public class User implements Serializable {
     private String userPhone;
     private String userMail;
 
-    @OneToMany(mappedBy = "collectionUser", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "collectionUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookCollection> userCollections = new ArrayList<BookCollection>();
 
     @OneToMany(mappedBy = "reviewUser", cascade = CascadeType.ALL)

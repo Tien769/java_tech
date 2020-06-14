@@ -112,8 +112,18 @@ public class Database implements DatabaseService {
     public User getUserById(int id) {
         User user = em.find(User.class, id);
         user.getUserCollections().size();
+        for (BookCollection collection : user.getUserCollections()) {
+            collection.getCollectionBooks().size();
+        }
         user.getUserReviews().size();
         user.getUserReceipts().size();
+        for (Receipt r : user.getUserReceipts()) {
+            r.getOrderDetails().size();
+            for (OrderDetail o : r.getOrderDetails()) {
+                o.getOrderBook();
+                o.getAmount();
+            }
+        }
         return user;
     }
 
@@ -262,4 +272,14 @@ public class Database implements DatabaseService {
         return this.verifyLogin(user.getUserMail(), user.getUserPassword());
     }
 
+    @Override
+    public User deleteCollection(User user, BookCollection collection) {
+        em.merge(collection);
+        if (!em.contains(collection)) {
+            collection = em.merge(collection);
+        }
+        em.remove(collection);
+        user = em.merge(user);
+        return user;
+    }
 }

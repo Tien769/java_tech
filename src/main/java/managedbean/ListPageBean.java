@@ -40,14 +40,6 @@ public class ListPageBean extends BaseBean {
 
     // ------------------------------------------PAGE_FUNCTION------------------------------------------
 
-    // public String setSelectedBook(int bookId) {
-    // System.out.println(bookId);
-    // Book b = db.getBookById(bookId);
-    // FacesContext.getCurrentInstance().getExternalContext().getFlash().put("selectedBook",
-    // b);
-    // return "detail.xhtml?faces-redirect=true";
-    // }
-
     public String searchBook() { // Search for book by title or author
         books = new ArrayList<Book>();
         if (searchTerm.isEmpty()) {

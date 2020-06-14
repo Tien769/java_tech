@@ -61,19 +61,17 @@
                             </h2>
                         </div>
                         <div class="ui-g-1">
-                            <p:commandButton value="View"/>
+                            <p:commandButton value="View" action="#{userPageBean.viewCollection(collection)}"/>
                         </div>
                         <div class="ui-g-1">
-                            <p:commandButton value="Delete" action="#{userPageBean.deleteCollection()}">
-                                <f:setPropertyActionListener target="#{userPageBean.selectedCollection}" value="#{collection.collectionId}"/>
-                            </p:commandButton>
+                            <p:commandButton value="Delete" action="#{userPageBean.deleteCollection(collection)}"/>
                         </div>
                     </c:forEach>
                     <div class="ui-g-12">
                         <div class="ui-g-10"></div>
                         <div class="ui-g-2">
                             <p:commandButton value="New" icon="pi pi-plus" onclick="PF('nameInput').show()"/>
-                            <p:dialog widgetVar="nameInput">
+                            <p:dialog widgetVar="nameInput" modal="true">
                                 <h:form>
                                     <p:inputText type="text" value="#{userPageBean.newCollectionName}"/>
                                     <p:commandButton value="Confirm" action="#{userPageBean.addCollection()}"/>                
@@ -90,7 +88,7 @@
                 <h:form>
                     <p:menu style="background-color: mediumaquamarine; width: 100%;">
                         <p:menuitem value ="My Order" action="buyhistory.xhtml?faces-redirect=true" />
-                        <p:menuitem value ="My library" action="library.xhtml?faces-redirect=true" />
+                        <p:menuitem value ="My library" action="#{userLibraryPageBean.initialize()}" />
                         <p:menuitem value ="My Reviews" action="reviews.xhtml?faces-redirect=true"/>
                         <p:menuitem value ="Sign out" action="#{userPageBean.signOut()}" update="navigation-bar-form"/>
                     </p:menu>

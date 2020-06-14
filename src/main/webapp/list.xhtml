@@ -29,9 +29,6 @@
                         <h:form>
                             <h3>Filter</h3>
                             <p:menu style="width:100%">
-                                <p:submenu label="Highlights">
-                                    <p:menuitem value="collection"/>
-                                </p:submenu>
                                 <p:submenu label="Filter">
                                     <p:menuitem style="padding: 0px">
                                         <p:selectManyMenu value="#{list.selectedFilter}" showCheckbox="true" scrollHeight="350">
@@ -42,7 +39,6 @@
                                         <p:commandButton value="filter" action="#{list.searchByFilter()}"/>
                                     </p:menuitem>
                                 </p:submenu>
-
                             </p:menu>
                         </h:form>
                     </div>

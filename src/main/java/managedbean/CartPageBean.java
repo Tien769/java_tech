@@ -69,7 +69,7 @@ public class CartPageBean extends BaseBean {
         System.out.println("ORIGINAL NUMBER OF ORDERS: " + userPageBean.getUserReceipts().size());
         userPageBean.setUser(sc.makeReceipt(userPageBean.getUser(), makeDetails(this.receipt), this.receipt));
         userPageBean.updateBean();
-        removeAll();
+
         return "paypal.xhtml?faces-redirect=true";
     }
 
