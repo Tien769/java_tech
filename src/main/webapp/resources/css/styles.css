@@ -1,0 +1,249 @@
+*{
+    box-sizing: border-box;
+    font-size: 13px;
+
+}
+
+body{
+    margin: 0px !important;
+    padding: 0px !important;
+    background-color: #F4F4F4 !important;
+
+}
+
+/*DISABLE GRID BORDER*/
+body .ui-panel .ui-panel-content,
+body .ui-datagrid .ui-datagrid-content{
+    border: none;
+}
+
+td, th {
+    font-size: 1.3rem;
+}
+
+/*HEAD BAR*/
+#head-bar *{
+    /*    text-align: center;*/
+    background-color: #dedede;
+    font-size: 1.3rem;
+}
+
+.fa, .far, .fas {
+    padding-right: .5rem;
+}
+
+.container-fluid{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+/*NAVIGATION BAR*/
+body .ui-widget, 
+body .ui-widget .ui-widget {
+    margin-top: .5rem;
+}
+/*background*/
+/*.ui-datagrid-content ui-widget-content ui-grid ui-grid-responsive, .ui-panel-content ui-widget-content{
+    background-color: #add !important;
+}*/
+/*end background*/
+#navigation-bar {
+    font-size: 1.6rem;
+    text-align: center;
+    background-color: #1F5366;
+    padding: .5rem 0rem;
+}
+
+#navigation-bar *{
+    font-size: inherit;
+}
+
+.ui-selectonemenu-panel .ui-selectonemenu-item {
+    font-size: 1.3rem;
+}
+
+#search-bar {
+    width:85%;
+}
+
+/*banner*/
+#banner{
+    padding: 0px !important;
+
+}
+#imgbanner{
+    display: block; 
+    width: 100%;
+    margin: auto; 
+}
+/*#textbanner{
+    text-align: center;
+    font-size: 35px;
+    margin: auto;
+    z-index: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #F95700FF;
+    font-weight: bold;
+}*/
+/*end banner*/
+
+/*content*/
+#txtsaleoff, #txtfeatured{
+    font-weight: bold; 
+    font-size: 35px; 
+    color: #79C000FF;
+    background-color: #59A584;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/*LOGIN.XHTML - SIGNIN/SIGNUP*/
+#login-window * {
+    font-size: 1.6rem;
+}
+#login-window div {
+    margin-bottom: .5rem;
+}
+
+#login-window{
+    margin: 3rem auto;
+    padding: 3rem 4rem;
+    min-height: 50rem;
+    max-width: 50rem;   
+    background-color: #add;
+}
+#login-window h2{
+    margin: 2rem auto 2rem auto;
+    text-align: center;
+    font-size: 3rem;
+}
+
+#login-window ui-inputgroup {
+
+}
+
+#signup-window .ui-inputgroup{
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+}
+#signup-window * {
+    font-size: 1.6rem;
+}
+#signup-window div {
+    margin-bottom: .5rem;
+}
+
+#signup-window{
+    margin: 3rem auto;
+    padding: 3rem 4rem;
+    min-height: 70rem;
+    max-width: 50rem;   
+    background-color: #add;
+}
+#signup-window h2{
+    margin: 2rem auto 2rem auto;
+    text-align: center;
+    font-size: 3rem;
+}
+
+#signup-window ui-inputgroup {
+
+}
+
+#signup-window .ui-inputgroup{
+    height: 60px;
+    width: 100%;
+    padding: 10px;
+}
+
+.ui-inputgroup .ui-inputtext {
+
+}
+
+/*ACCOUNT PAGE*/
+#info-window *{
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+#info-window h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.ui-panelgrid {
+    width: 80%;
+    margin: 1rem auto;
+}
+
+body .ui-panelgrid .ui-panelgrid-cell {
+    background-color: transparent;
+    border: none;
+}
+
+.ui-widget-header .ui-inputfield, .ui-widget-content .ui-inputfield {
+    width: 100%;
+}
+
+/*CART-PAGE*/
+
+.ui-datatable-tablewrapper{
+    font-size: 1.6rem;
+    margin: 1rem auto;
+    width: 79%;
+    text-align: center;
+}
+
+.ui-datatable-tablewrapper *{
+    font-size: 1.3rem;
+}
+
+body .ui-datatable thead th *{
+    font-size: 1.4rem;
+    font-weight: bold !important;
+}
+
+.ui-spinner {
+    width: 50%;
+}
+
+/*LIST PAGE*/
+body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link.ui-state-hover {
+    background-color: transparent;
+}
+
+.ui-widget-header .ui-inputfield, .ui-widget-content .ui-inputfield {
+    border: none;
+}
+
+.ui-selectmanymenu .ui-selectlistbox-item{
+    text-align: left;
+    margin: auto;
+}
+body .ui-widget, body .ui-widget .ui-widget {
+    margin-top: 0rem;
+}
+/*remove padding*/
+body .ui-datagrid .ui-datagrid-content, .ui-md-3, .ui-panel .ui-panel-content, body .ui-panel .ui-panel-content{
+    padding: 0px !important;
+}
+/*body .ui-datagrid .ui-datagrid-content{
+    background-color: #add;
+}*/
+#commanlink{
+    background-color: #366664;
+    height: 50px;
+    text-align: center;
+  
+}
+.promotion{
+/*    color: wheat;*/
+    font-size: 30px;
+    font-weight: bold;
+    
+}
