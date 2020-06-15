@@ -196,11 +196,11 @@ body .ui-panelgrid .ui-panelgrid-cell {
     font-size: 1.6rem;
     margin: 1rem auto;
     width: 79%;
-    text-align: center;
 }
 
 .ui-datatable-tablewrapper *{
     font-size: 1.3rem;
+    border-style: none;
 }
 
 body .ui-datatable thead th *{
@@ -269,15 +269,7 @@ body .ui-datagrid .ui-datagrid-content, .ui-md-3, .ui-panel .ui-panel-content, b
 .button-detail .ui-button-text{
     font-size: 17px;
 }
-.detail-review-table{
-}
-.detail-review-table .ui-datatable-tablewrapper *{
-    border-style: hidden;
-    background-color: white;
-}
-.detail-review-table .ui-datatable .ui-datatable-data>tr>td{
-    border-style: none;
-}
+
 /* CART PAGE*/
 
 .button-cart{
