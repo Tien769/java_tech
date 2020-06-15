@@ -325,3 +325,14 @@ body .ui-datagrid .ui-datagrid-content, .ui-md-3, .ui-panel .ui-panel-content, b
     font-weight: 600;
     color: white !important;
 }
+/*LIBRARY PAGE*/
+.button-library{
+    width: 100%; 
+    height: 2.5em;
+    font-size: 17px !important; 
+    font-weight: bold !important;
+
+}
+.button-library .ui-button-text{
+    font-size: 17px;
+}
