@@ -21,37 +21,52 @@
         </ui:insert>
 
         <h:form>
-            <p:dataTable value="#{cartPageBean.bookList}" var="book" id="cart">
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Title" />
-                    </f:facet>
-                    <h:outputText value="#{book.title}"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Quantity" />
-                    </f:facet>
-                    <h:outputText value="#{cartPageBean.bookQuantityList[book]}" />
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Set Quantity" />
-                    </f:facet>
-                    <p:spinner value="#{cartPageBean.bookQuantityList[book]}" min="1" max="10"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Remove this item" />
-                    </f:facet>
-                    <h:commandButton value="remove book" action="#{cartPageBean.removeBook}">
-                        <f:setPropertyActionListener target="#{cartPageBean.requestBookId}" value="#{book.bookId}"/>
-                    </h:commandButton>
-                </p:column>
-            </p:dataTable>
-            <p:commandButton value="Update cart" action="#{cartPageBean.updateCart()}"/>
-            <p:commandButton value="Remove all" action="#{cartPageBean.removeAll()}"/>
-            <p:commandButton value="Check out" action="#{cartPageBean.buy()}"/>
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <p:dataTable value="#{cartPageBean.bookList}" var="book" id="cart">
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Title" />
+                            </f:facet>
+                            <h:outputText value="#{book.title}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Quantity" />
+                            </f:facet>
+                            <h:outputText value="#{cartPageBean.bookQuantityList[book]}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Set Quantity" />
+                            </f:facet>
+                            <p:spinner value="#{cartPageBean.bookQuantityList[book]}" min="1" max="10"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Remove this item" />
+                            </f:facet>
+                            <h:commandButton value="Remove book" action="#{cartPageBean.removeBook}">
+                                <f:setPropertyActionListener target="#{cartPageBean.requestBookId}" value="#{book.bookId}"/>
+                            </h:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+            <div class="ui-g">
+                <div class ="ui-g-3"></div>
+                <div class ="ui-g-1">
+                    <p:commandButton class="button-cart" value="Update cart" action="#{cartPageBean.updateCart()}"/>
+                </div>
+                <div class ="ui-g-1"></div>
+                <div class ="ui-g-1">
+                    <p:commandButton class="button-cart" value="Remove all" action="#{cartPageBean.removeAll()}"/>
+                </div>
+                <div class ="ui-g-1"></div>
+                <div class="ui-g-1">
+                    <p:commandButton class="button-cart" value="Check out" action="#{cartPageBean.buy()}"/>
+                </div>
+            </div>
         </h:form>
 
         <!--FOOTER-->
