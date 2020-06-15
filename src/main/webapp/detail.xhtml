@@ -89,7 +89,7 @@
             
             <div class="ui-g-12">
                 <h:form>
-                    <div class="ui-g detail-review-table">
+                    <div class="ui-g">
                         <p:dataTable value="#{detailPageBean.bookReviews}" var="review">
                             <p:column>
                                 <f:facet name="header">
@@ -107,13 +107,13 @@
                     </div>
                 </h:form>
 
-                <h:form>
+                <h:form style="padding: 2.5em;">
                     <div class="ui-g">
                         <div class="ui-g-1"></div>
                         <div class="ui-g-10">
                             <p:inputTextarea value="#{detailPageBean.userReview}" style="width: 100%; align-items: center;"/>
                             <br />
-                            <p:commandButton value="Make review" class="button-review" action="#{detailPageBean.makeReview()}"/>
+                            <p:commandButton value="Make review" class="button-cart" action="#{detailPageBean.makeReview()}"/>
                         </div>
                         <div class="ui-g-1"></div>
                     </div>
