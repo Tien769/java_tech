@@ -282,3 +282,25 @@ body .ui-datagrid .ui-datagrid-content, .ui-md-3, .ui-panel .ui-panel-content, b
 .button-cart .ui-button-text{
     font-size: 17px;
 }
+/*LIST PAGE*/
+.sidebar {
+    margin-top: 2em;
+}
+.sidebar .ui-menu .ui-menu-list .ui-widget-header h3{
+    font-size: 38px;
+    font-weight: bold;
+}
+.sidebar .ui-selectmanymenu .ui-selectlistbox-item{
+    font-size: 20px;
+    font-weight: 400;
+}
+.button-list{
+    width: 100%; 
+    height: 3em;
+    font-size: 17px !important; 
+    font-weight: bold !important;
+
+}
+.button-list .ui-button-text{
+    font-size: 20px;
+}
