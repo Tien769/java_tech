@@ -20,9 +20,25 @@
             <ui:include src="header.xhtml"/>
         </ui:insert>
         <br></br><br></br>
+        
+        
         <!-- content -->
-        <div class="ui-g-fluid" id="info-window">
-            <div class="ui-g-8">
+        <div class="ui-g-fluid user-account" id="info-window">
+            <div class="ui-g-1"></div>
+            
+            <div class="ui-g-2">
+                <h:form>
+                    <p:menu style="background-color: mediumaquamarine; width: 100%;">
+                        <p:menuitem value ="My Order" action="buyhistory.xhtml?faces-redirect=true" />
+                        <p:menuitem value ="My library" action="#{userLibraryPageBean.initialize()}" />
+                        <p:menuitem value ="My Reviews" action="reviews.xhtml?faces-redirect=true"/>
+                        <p:menuitem value ="Sign out" action="#{userPageBean.signOut()}" update="navigation-bar-form"/>
+                    </p:menu>
+                </h:form>
+            </div>
+            
+            <div class="ui-g-1"></div>
+            <div class="ui-g-7">
                 <div class="ui-g-12" style="background-color: #bbf2f2; padding:0px;">
                     <h1>USER INFORMATION</h1>
                 </div>
@@ -60,17 +76,17 @@
                                 <h:outputText value="#{collection.collectionName}"/>
                             </h2>
                         </div>
-                        <div class="ui-g-1">
-                            <p:commandButton value="View" action="#{userPageBean.viewCollection(collection)}"/>
+                        <div class="ui-g-2">
+                            <p:commandButton class="button-account" value="View" action="#{userPageBean.viewCollection(collection)}"/>
                         </div>
-                        <div class="ui-g-1">
-                            <p:commandButton value="Delete" action="#{userPageBean.deleteCollection(collection)}"/>
+                        <div class="ui-g-2">
+                            <p:commandButton class="button-account" value="Delete" action="#{userPageBean.deleteCollection(collection)}"/>
                         </div>
                     </c:forEach>
                     <div class="ui-g-12">
-                        <div class="ui-g-10"></div>
-                        <div class="ui-g-2">
-                            <p:commandButton value="New" icon="pi pi-plus" onclick="PF('nameInput').show()"/>
+                        <div class="ui-g-4"></div>
+                        <div class="ui-g-4" style="padding:0 3em;">
+                            <p:commandButton class="button-account" value="New" icon="pi pi-plus" onclick="PF('nameInput').show()"/>
                             <p:dialog widgetVar="nameInput" modal="true">
                                 <h:form>
                                     <p:inputText type="text" value="#{userPageBean.newCollectionName}"/>
@@ -79,21 +95,9 @@
                             </p:dialog>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-            <div class="ui-g-1"></div>
-            <div class="ui-g-2">
-                <h:form>
-                    <p:menu style="background-color: mediumaquamarine; width: 100%;">
-                        <p:menuitem value ="My Order" action="buyhistory.xhtml?faces-redirect=true" />
-                        <p:menuitem value ="My library" action="#{userLibraryPageBean.initialize()}" />
-                        <p:menuitem value ="My Reviews" action="reviews.xhtml?faces-redirect=true"/>
-                        <p:menuitem value ="Sign out" action="#{userPageBean.signOut()}" update="navigation-bar-form"/>
-                    </p:menu>
-                </h:form>
-            </div>
+            
             <div class="ui-g-1"></div>
         </div>
 
