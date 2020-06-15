@@ -21,42 +21,41 @@
         <ui:insert name="header">
             <ui:include src="header.xhtml"/>
         </ui:insert>
-
-        <div class="ui-g">
-            <div class="ui-g-12">
+        
+        <!--Content-->
+        <div class="detail-container">
+            <div class="ui-g">
                 <div class="ui-g-1" ></div>
                 <div class="ui-g-3">
                     <p:graphicImage value="#{detailPageBean.selectedBook.cover}" style="height: 90%; width: 100%;"></p:graphicImage>
                 </div>
                 <div class="ui-g-1"></div>
                 <div class="ui-g-6">
-                    <div class="ui-g ui-g-12">
-                        <div class="ui-g-12">
+                    <div class="ui-g">
+                        <div class="ui-g-12" style="padding:2em 0 1em;">
                             <h:outputText value="#{detailPageBean.selectedBook.title}" style="font-size: 45px;font-weight: bold;" />
                         </div>
-                        <div class="ui-g-12">
+                        <div class="ui-g-12" style="padding:2em 0 1em;">
                             <span style="font-size: 20px;"> Author: </span> 
                             <h:outputText value="#{detailPageBean.selectedBook.author}" style="font-size: 22px; color: red;" />
                         </div>
-
-                        <div class="ui-g-12">
+                        <div class="ui-g-12" style="padding:2em 0 1em;">
                             <span style="font-size: 20px;"> Price: </span>
-                            <h:outputText value="#{detailPageBean.selectedBook.price}00 Ã„â€˜" style="font-size: 22px; color: red;" />
+                            <h:outputText value="#{detailPageBean.selectedBook.price}00 VND" style="font-size: 22px; color: red;" />
                         </div>
 
-                        <div class="ui-g-12">
+                        <div class="ui-g-12" style="padding:1.3em 0 1em;">
                             <span style="font-size: 20px;"> Rating: </span>
                             <h:outputText value="#{detailPageBean.selectedBook.rating}" style="font-size: 22px; color: red;" />
                             <i class="pi pi-star" style="font-size: 3em; color: yellow;"></i>
                         </div>
-
-                        <div class ="ui-g-2">
-                            <p:commandButton class="button-buy" value="add to cart" action="#{cartPageBean.addBook()}"/>
+                        <div class ="ui-g-3" style="padding:2em 0 1em;">
+                            <p:commandButton class="button-detail" value="add to cart" action="#{cartPageBean.addBook()}"/>
                         </div>
-
-                        <div class ="ui-g-3">
+                        <div class="ui-g-1"></div>
+                        <div class ="ui-g-3" style="padding:2em 0 1em;">
                             <h:form>
-                                <p:commandButton value="Add to Library" onclick="PF('collectionChooser').show()"/>
+                                <p:commandButton class="button-detail" value="Add to Library" onclick="PF('collectionChooser').show()"/>
                                 <p:dialog widgetVar="collectionChooser" modal="true">
                                     <c:set var ="userName" scope="session" value="#{userPageBean.name}"/>
                                     <c:if test="${userName != null}">
@@ -76,28 +75,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="ui-g-1" ></div>
             </div>
         </div>
-
+        
+        <!--Review-->
         <div class="ui-g">
             <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
             <div class ="ui-g-2" style="text-align: center;">
-                <h:outputText value="Ã„ï¿½ÃƒÂ¡nh giÃƒÂ¡" style="font-size: 45px;font-weight: bold;" />
+                <h:outputText value="Reviews" style="font-size: 45px;font-weight: bold;" />
             </div>
             <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
+            
             <div class="ui-g-12">
                 <h:form>
-                    <div class="ui-g">
+                    <div class="ui-g detail-review-table">
                         <p:dataTable value="#{detailPageBean.bookReviews}" var="review">
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="NgÃ†Â°Ã¡Â»ï¿½i dÃƒÂ¹ng"/>
+                                    <h:outputText value="Users"/>
                                 </f:facet>
                                 <h:outputText value="#{review.reviewUser.userName}"/>
                             </p:column>
                             <p:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Ã„ï¿½ÃƒÂ¡nh giÃƒÂ¡"/>
+                                    <h:outputText value="Reviews"/>
                                 </f:facet>
                                 <h:outputText value="#{review.reviewContent}"/>
                             </p:column>
@@ -111,29 +113,31 @@
                         <div class="ui-g-10">
                             <p:inputTextarea value="#{detailPageBean.userReview}" style="width: 100%; align-items: center;"/>
                             <br />
-                            <p:commandButton value="make review" class="button-review" action="#{detailPageBean.makeReview()}"/>
+                            <p:commandButton value="Make review" class="button-review" action="#{detailPageBean.makeReview()}"/>
                         </div>
                         <div class="ui-g-1"></div>
                     </div>
                 </h:form>
             </div>
         </div>
-
+        
+        
+        <!--other-->
         <div class="ui-g">
             <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
             <div class ="ui-g-2" style="text-align: center;">
-                <h:outputText value="Other Books" style="font-size: 45px;font-weight: bold;" />
+                <h:outputText value="Other Books" style="font-size: 42px;font-weight: bold;" />
             </div>
             <div class ="ui-g-5" style="margin-top: 2em;"><hr /></div>
-            <div class="ui-g-12">
+            <div class="ui-g-12" style="padding: 10em;">
                 <h:form>
-                    <p:dataGrid var="book" value="#{homePageBean.promotions.get(0)}" columns="5" rows="5" layout="grid">
-                        <h:commandLink action="#{detailPageBean.setSelectedBook(book.bookId)}">
-                            <p:panel style="text-align:center">
-                                <h:panelGrid columns="1" style="width:100%; background-color: #F3F6FA;">
+                    <p:dataGrid var="book" value="#{homePageBean.promotions.get(4)}" columns="4" rows="8" layout="grid">
+                        <h:commandLink action="#{list.selectBook(book.bookId)}">
+                            <p:panel style="text-align:center;">
+                                <h:panelGrid columns="1" style="width:100%;font-weight: bold">
                                     <p:graphicImage value="#{book.cover}"/> 
                                     <h:outputText value="#{book.title}" />
-                                    <h:outputText value="#{book.price}"/>  
+                                    <h:outputText value="#{book.price}"/>
                                 </h:panelGrid>
                             </p:panel>
                         </h:commandLink>
