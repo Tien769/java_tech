@@ -304,3 +304,24 @@ body .ui-datagrid .ui-datagrid-content, .ui-md-3, .ui-panel .ui-panel-content, b
 .button-list .ui-button-text{
     font-size: 20px;
 }
+/*ACCOUNT PAGE*/
+.user-account{
+}
+.user-account .button-account{
+    width: 100%; 
+    height: 2.5em;
+    font-size: 17px !important; 
+    font-weight: bold !important;
+
+}
+.user-account .button-account .ui-button-text{
+    font-size: 17px;
+}
+.user-account .ui-menu .ui-menuitem-link{
+    line-height: 65px;
+}
+.user-account .ui-menu .ui-menuitem-text{
+    font-size: 27px !important;
+    font-weight: 600;
+    color: white !important;
+}
