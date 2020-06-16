@@ -88,7 +88,7 @@ public class Admin implements AdminService {
 
     @Override
     public List<BookCollection> readAllBookCollection() {
-        return db.getAllCollections();
+        return db.getPromotedCollections();
     }
 
     @Override
