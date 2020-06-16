@@ -24,19 +24,19 @@
         <!--side bar-->
         <div class="container">
             <div class="ui-g">
+                <div class="ui-g-1"></div>
                 <div class ="ui-g-3"> 
                     <div class = "sidebar">
                         <h:form>
-                            <h3>Filter</h3>
                             <p:menu style="width:100%">
                                 <p:submenu label="Filter">
                                     <p:menuitem style="padding: 0px">
-                                        <p:selectManyMenu value="#{list.selectedFilter}" showCheckbox="true" scrollHeight="350">
+                                        <p:selectManyMenu value="#{list.selectedFilter}" showCheckbox="true" scrollHeight="540">
                                             <f:selectItems value="#{list.filters}" var="filter" itemLabel="#{filter.genrename}" itemValue="#{filter}"/>
                                         </p:selectManyMenu>
                                     </p:menuitem>
                                     <p:menuitem>
-                                        <p:commandButton value="filter" action="#{list.searchByFilter()}"/>
+                                        <p:commandButton class="button-list" value="Filter" action="#{list.searchByFilter()}"/>
                                     </p:menuitem>
                                 </p:submenu>
                             </p:menu>
@@ -47,7 +47,7 @@
 
                 <!--content-->
                 <div class="ui-g-1"></div>
-                <div class="ui-g-8">
+                <div class="ui-g-6">
                     <div class="ui-g">
                         <div class="ui-g-12">
                             <p:outputLabel style="font-weight: bold; font-size: 40px; margin-bottom: 20px; text-align: center" value="Search Result For '#{list.searchResultTerm}'"/>
@@ -66,6 +66,7 @@
                         </p:dataGrid>
                     </h:form>           
                 </div>
+                <div class="ui-g-1"></div>
             </div>
         </div>
         <!--end of content-->

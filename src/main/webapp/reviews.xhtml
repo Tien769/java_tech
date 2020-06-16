@@ -24,20 +24,32 @@
         <!--CONTENT-->
         <div class="ui-g">
             <h:form>
-                <p:dataTable var="review" value="#{userReviewPageBean.reviews}">
-                    <p:column headerText="Book">
-                        <h:commandLink action="#{list.selectBook(review.reviewBook.bookId)}">
-                            <p:panelGrid>
-                                <div><h:graphicImage value="#{review.reviewBook.cover}"/></div>
-                                <div><h:outputText value="#{review.reviewBook.title}"/></div>
-                            </p:panelGrid>
-                        </h:commandLink>
-                    </p:column>
-                    <p:column headerText="Review">
-                        <h:outputText value="#{review.reviewContent}"/>
-                    </p:column>
-                </p:dataTable>
-                <p:commandButton value="See reviews" action="#{userReviewPageBean.viewReviews()}"/>
+                <div class="ui-g-1"></div>
+                <div class="ui-g-10">
+                    <p:dataTable var="review" value="#{userReviewPageBean.reviews}">
+                        <p:column headerText="Book">
+                            <h:commandLink action="#{list.selectBook(review.reviewBook.bookId)}">
+                                <p:panelGrid>
+                                    <div><h:graphicImage value="#{review.reviewBook.cover}"/></div>
+                                    <div><h:outputText value="#{review.reviewBook.title}"/></div>
+                                </p:panelGrid>
+                            </h:commandLink>
+                        </p:column>
+                        <p:column headerText="Review">
+                            <h:outputText value="#{review.reviewContent}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                <div class="ui-g-1"></div>
+                <div class="ui-g-12">
+                    <div class="ui-g-5"></div>
+                    <div class="ui-g-2">
+                        <p:commandButton class="button-library" value="See reviews" action="#{userReviewPageBean.viewReviews()}"/>
+                    </div>
+                    <div class="ui-g-5"></div>
+                </div>
+                
+
             </h:form>
         </div>
 
