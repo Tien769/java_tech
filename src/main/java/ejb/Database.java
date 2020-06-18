@@ -152,7 +152,8 @@ public class Database implements DatabaseService {
     // Create a new account
     public User createAccount(User user) {
         em.persist(user);
-        return em.find(user.getClass(), user.getUserId());
+        // return em.find(user.getClass(), user.getUserId());
+        return new User();
     }
 
     // Update an account

@@ -24,7 +24,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = -5150606925567750371L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
     private String userName;
     private String userPassword;
