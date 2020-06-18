@@ -8,9 +8,17 @@
 
     xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Paypal</title>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        <h:outputStylesheet name="styles.css" library="css"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
     </h:head>
     <h:body>
+        <ui:insert  name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+        <br/><br/>
         <form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
             <input type="hidden" name="upload" value="1"/>
             <input type="hidden" name="return" value="welcome"/>
@@ -32,6 +40,10 @@
             <input type="hidden" name="currency_code" value="USD"/>
             <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"/>
         </form>
+        <br/><br/>
+        <ui:insert name="footer">
+            <ui:include src="footer.xhtml"/>
+        </ui:insert>
     </h:body>
 
 

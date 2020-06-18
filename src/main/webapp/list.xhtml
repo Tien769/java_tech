@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Rustic Corner - List</title>
         <h:outputStylesheet name="styles.css" library="css"/>
         <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
         <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
@@ -50,16 +50,16 @@
                 <div class="ui-g-6">
                     <div class="ui-g">
                         <div class="ui-g-12">
-                            <p:outputLabel style="font-weight: bold; font-size: 40px; margin-bottom: 20px; text-align: center" value="Search Result For '#{list.searchResultTerm}'"/>
+                            <p:outputLabel style="font-weight: bold; font-size: 40px; margin-bottom: 20px; text-align: center; color: #143e54" value="Search Result For '#{list.searchResultTerm}'"/>
                         </div>
                     </div>
                     <h:form>
                         <p:dataGrid var="book" value="#{list.books}" columns="3" rows="15" layout="grid" paginator="true">
-                            <h:commandLink action="#{list.setSelectedBook(book.bookId)}">
+                            <h:commandLink action="#{list.selectBook(book.bookId)}">
                                 <p:panel style="text-align:center">
                                     <h:panelGrid columns="1" style="width:100%;">
                                         <p:graphicImage value="#{book.cover}" style="width:70%; height: 100%;"/> 
-                                        <h:outputText value="#{book.title}" />
+                                        <h:outputText style="font-weight: bold" value="#{book.title}" />
                                     </h:panelGrid>
                                 </p:panel>
                             </h:commandLink>
