@@ -248,6 +248,10 @@ public class Database implements DatabaseService {
         List<Receipt> receipts = q.getResultList();
         for (Receipt receipt : receipts) {
             receipt.getOrderDetails().size();
+            for (OrderDetail o : receipt.getOrderDetails()) {
+                o.getOrderBook();
+                o.getAmount();
+            }
         }
         return receipts;
     }
@@ -258,8 +262,17 @@ public class Database implements DatabaseService {
         Query q = em.createNamedQuery("User.getAllUsers");
         List<User> users = q.getResultList();
         for (User user : users) {
+            user.getUserReviews().size();
             user.getUserReceipts().size();
+            for (Receipt r : user.getUserReceipts()) {
+                r.getOrderDetails().size();
+                for (OrderDetail o : r.getOrderDetails()) {
+                    o.getOrderBook();
+                    o.getAmount();
+                }
+            }
         }
+
         return users;
     }
 

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <p:dataTable value="#{adminPageBean.receiptList}" var="receipt">
+                <p:column headerText="Date">
+                    <h:outputText value="#{receipt.date}"/>
+                </p:column>
+                <p:column headerText="Payment Method">
+                    <h:outputText value="#{receipt.paymentMethod}"/>
+                </p:column>
+                <p:column headerText="User">
+                    <h:outputText value="#{receipt.orderUser.userMail}"/>
+                </p:column>
+                <p:column headerText="Detail">
+                    <ui:repeat var="order" value="#{receipt.orderDetails}">
+                        <div class="ui-g">
+                            <div class="ui-g-6">
+                                <h:outputText value="#{order.orderBook.title}"/>
+                            </div>
+                            <div class="ui-g-3"></div>
+                            <div class="ui-g-2">
+                                Amount: <h:outputText value="#{order.amount}"/>
+                            </div>
+                            <div class="ui-g-1"></div>
+                        </div>
+                    </ui:repeat>
+                </p:column>
+                <p:column headerText="Total">
+                    <h:outputText value="#{receipt.total}"/>
+                </p:column>
+            </p:dataTable>
+        </ui:composition>
+    </h:body>
+</html>
+
