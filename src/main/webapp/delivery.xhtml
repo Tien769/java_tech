@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Rustic Corner - Delivery Information</title>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        <h:outputStylesheet name="styles.css" library="css"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+    </h:head>
+    <h:body>
+        <ui:insert  name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+
+        <div class="container" style="background-color: white; margin: 0 200px">
+            <div class="row" style="margin: 0 auto !important;padding: 10px !important">
+                <h2 style="font-size: 20px !important;">Delivery Information</h2>
+                <hr/>
+                <div class="content" >
+                    <ol>
+                        <li>Shipping time and freight</li>
+
+                        <h2>How do we charge shipping? What is bulky item surcharge?</h2>
+                        <p>Orders will be free "Shipping" when the order value from 250,000 VND.</p>
+                        <p>In case the order value is not enough free shipping, the fee will be applied 19,000 VND / order.</p>
+                        <h2>Bulky item surcharge:</h2>
+                        <p>Orders will be exempt from "bulky goods surcharge" when the total weight of orders below 5kg (including gifts). Orders with a weight of 5 kg will be charged for each additional 0.5 kg according to the fee table as follows:</p>
+                        <table width="100%" style="text-align: center">
+                            <tr>
+                                <td><b>Order weight</b></td><td><b>Additional charge</b></td>
+                            </tr>
+                            <tr>
+                                <td>≤5 kg</td><td>Free</td>
+                            </tr>
+                            <tr>
+                                <td>≤ 8kg</td><td>3,000 VNĐ / 0.5kg</td>
+                            </tr>
+                            <tr>
+                                <td>≤ 14kg</td><td>2,000 VNĐ / 0.5kg</td>
+                            </tr>
+                            <tr>
+                                <td>> 14kg</td><td>1,000 VNĐ / 0.5kg</td>
+                            </tr>
+                        </table>
+                        <h2>How long will we support delivery?</h2>
+                        <p>Currently, RusticCorner will deliver goods during office hours between 8:30 - 17:30 and in the days from Monday to Saturday. Tiki will announce the delivery time for each specific order when you complete the selection step. Only deliver goods during the ordering process and after you have successfully placed an order through the order details in your account and order confirmation email.</p>
+                        <p>In addition, RusticCorner's expected delivery time will depend on 3 factors:</p>
+                        <ul>
+                            <li><b>Order time:</b> Delivery time starts from the time we confirms the order successfully, if you order after office hours (from 8 am to 5 pm), delivery time will be automatically added. add 1 more day.</li>
+                            <li><b>Delivery location: </b>We will rely on the address you have registered for the order and to balance the estimated delivery time in each area.</li>
+                            <li><b>Products ordered: </b>If your order contains "Pre-order" products (ie products that have not been officially provided by the manufacturer in the market) or products that need to be shipped from the supplier's warehouse, then delivery time will start when RusticCorner has enough products for the order.</li>
+                        </ul>
+                        <h2>Delivery time by product:</h2>
+                        <p>Delivery time starts from the time your order is confirmed successfully.</p>
+                        <p>Shipping time depends on product and delivery address. Please refer to the estimated delivery time on each product by going to the product information and clicking the name of the province / city to be shipped.</p>
+                        <p>When choosing a province, the system will notify you of the expected delivery time for the product.</p>
+                        <p>After a successful order, we will announce a specific time for the order, usually delivery time in Ho Chi Minh City will fluctuate in about 1-3 working days. For other provinces, delivery time will be from 3-7 business days.</p>
+                        <li>Policies View goods - Checking - Note When Receiving goods</li>
+                        <h2>Can I check the product on delivery?</h2>
+                        <p>To meet the needs and maximum protection of customer benefits when using the services of RusticCorner. RusticCorner has implemented a policy to support viewing and checking goods on delivery. Customers receiving goods from the shipping staff can open the seal of RusticCorner's box to check the goods.</p>
+                        <p>
+                            <b>Note:</b> the inspection will not include opening of the product's own seal (sealing) (affecting sealing seals, product packaging, etc.) or in-depth testing (plugging in, using the test). , record data, ...).
+                        </p>
+                        <p>In the case of shipping staff requires you to sign a record confirming that the customer has received all and intact all products (inspection records). RusticCorner encourages you to make the most of the above benefits before signing the confirmation for the best support in any situation if a request to return.</p>
+                        <h2>Note on receipt of goods</h2>
+                        <p>We encourage you to check the seal of your box before receiving it. In case the Rustic Corner seal has been removed, you can request to check the contents of the goods inside (according to the Cargo-Auditing Policy) to minimize the risk.</p>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <ui:insert name="footer">
+            <ui:include src="footer.xhtml"/>
+        </ui:insert>
+    </h:body>
+</html>
+

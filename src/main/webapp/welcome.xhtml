@@ -37,13 +37,13 @@
                     </div>
                     <br/>
                     <h:form>
-                        <p:dataGrid var="book" value="#{homePageBean.promotions.get(0)}" columns="4" rows="12" layout="grid">
+                        <p:dataGrid var="book" value="#{homePageBean.promotions.get(0)}" columns="3" rows="9" layout="grid">
                             <h:commandLink action="#{list.selectBook(book.bookId)}">
                                 <p:panel style="text-align:center">
-                                    <h:panelGrid columns="1" style="width:100%; background-color: #F3F6FA;">
+                                    <h:panelGrid columns="1" style="width:100%; background-color: #F3F6FA;font-weight: bold;">
                                         <p:graphicImage value="#{book.cover}"/> 
                                         <h:outputText value="#{book.title}" />
-                                        <h:outputText value="#{book.price}"/>  
+                                       <h:outputText value="Price: #{book.price}00 VND"/>  
                                     </h:panelGrid>
                                 </p:panel>
                             </h:commandLink>
@@ -66,10 +66,10 @@
                         <p:dataGrid var="book" value="#{homePageBean.promotions.get(1)}" columns="3" rows="9" layout="grid">
                             <h:commandLink action="#{list.selectBook(book.bookId)}">
                                 <p:panel style="text-align:center;">
-                                    <h:panelGrid columns="1" style="width:100%;font-weight: bold">
+                                    <h:panelGrid columns="1" style="width:100%;font-weight: bold; background-color: #F3F6FA;">
                                         <p:graphicImage value="#{book.cover}"/> 
                                         <h:outputText value="#{book.title}" />
-                                        <h:outputText value="#{book.price}"/>
+                                        <h:outputText value="Price: #{book.price}00 VND"/>
                                     </h:panelGrid>
                                 </p:panel>
                             </h:commandLink>

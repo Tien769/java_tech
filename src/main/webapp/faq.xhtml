@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>FAQ</title>
+        <h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+        <h:outputStylesheet name="styles.css" library="css"/>
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/all.min-jsf.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/5.12.0/css/v4-shims.min-jsf.css" />
+    </h:head>
+    <h:body>
+        <ui:insert  name="header">
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+        <br/><br/>
+        <div class="container" style="background-color: white; margin: 0 200px">
+            <div class="row" style="margin: 0 auto !important;padding: 10px !important">
+                <div >
+                    <h2 style="font-size: 20px !important;">FAQ</h2>
+                    <hr/>
+                    <div class="content" >
+                        <p>
+                            <h2>Do you ship to Internationally?</h2>
+                            <ul>
+                                <li>No, we currently are VN only. We do hope to help support bookstores over the world in the future.</li>
+                            </ul>
+                        </p>
+                        <p>
+                            <h2>How do I report a problem with the website or my order?</h2>
+                            <ul>
+                                <li>Email us at <span style="color: red">rusticcorner@gmail.com</span></li>
+                            </ul>
+                        </p>
+                        <p>
+                            <h2>How do I return an order?</h2>
+                            <p>
+                                If you have received damaged, defective, or incorrectly shipped merchandise you may return it within 14 days of the delivery date for a full refund of the cost of the books returned including initial shipping costs. To ensure your package is returned correctly please include the return slip included at the bottom of your paper receipt. Return the package to the address indicated below and include and display the order number prominently on the slip and the packaging. Return postage is to be covered by the sender. If you have any further questions regarding your return please reach out to: rusticcorner@gmail.com.
+                            </p>
+                        </p>
+                        <p>
+                            <h2>How do I set up an account?</h2>
+                            <p>Anyone can create an account at <a href="signup.xhtml" style="font-size: 20px">here</a></p>
+                        </p>
+                        <p id="contactus">
+                            <h2>If my question isn’t answered here?</h2>
+                            <ul>
+                                <li>Email us at rusticcorner@gmail.com.</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/><br/>
+        <ui:insert name="footer">
+            <ui:include src="footer.xhtml"/>
+        </ui:insert>
+    </h:body>
+</html>

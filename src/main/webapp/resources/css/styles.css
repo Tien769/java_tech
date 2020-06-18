@@ -22,7 +22,7 @@ td, th {
 }
 
 /*HEAD BAR*/
-#head-bar *{
+#head-bar *, #footer-bar *{
     /*    text-align: center;*/
     background-color: #dedede;
     font-size: 1.3rem;
@@ -94,7 +94,7 @@ body .ui-widget .ui-widget {
 #txtsaleoff, #txtfeatured{
     font-weight: bold; 
     font-size: 35px; 
-    color: #79C000FF;
+    color: #FEBF01;
     background-color: #59A584;
     text-align: center;
     margin: 0 auto;
@@ -229,7 +229,7 @@ body .ui-widget, body .ui-widget .ui-widget {
     margin-top: 0rem;
 }
 /*remove padding*/
-body .ui-datagrid .ui-datagrid-content, .ui-md-3, .ui-panel .ui-panel-content, body .ui-panel .ui-panel-content{
+.ui-md-3, .ui-panel .ui-panel-content, body .ui-panel .ui-panel-content{
     padding: 0px !important;
 }
 /*body .ui-datagrid .ui-datagrid-content{
@@ -244,6 +244,11 @@ body .ui-datagrid .ui-datagrid-content, .ui-md-3, .ui-panel .ui-panel-content, b
 .promotion{
 /*    color: wheat;*/
     font-size: 30px;
+    font-weight: bold; 
+}
+h2, p, span, li, b{
+    font-size: 20px;
+}
+ol > li{
     font-weight: bold;
-    
 }
