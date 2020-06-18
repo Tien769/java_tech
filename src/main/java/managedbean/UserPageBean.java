@@ -29,6 +29,7 @@ public class UserPageBean extends BaseBean {
     private BookCollection selectedCollection;
     private List<Receipt> userReceipts;
     private List<Review> userReviews;
+    private String errorMsg = "";
     @EJB
     private AccountService as;
     @Inject
@@ -48,15 +49,15 @@ public class UserPageBean extends BaseBean {
     public String signIn() { // Sign in
         User user = as.authenticate(email, password);
         if (user != null) {
-            System.out.println("Loging in");
             this.user = user;
             System.out.println(this.user.getUserName());
             updateBean();
+            errorMsg = "";
             return "welcome.xhtml?faces-redirect=true";
         }
-        System.out.println("USER LOGGING IN: " + this.user.getUserName());
         PrimeFaces.current().ajax().update("userCollection");
-        return "fail";
+        errorMsg = "Wrong email or password. Please try again";
+        return "signin.xhtml?faces-redirect=true";
     }
 
     public String signUp() { // Sign up
@@ -294,5 +295,13 @@ public class UserPageBean extends BaseBean {
 
     public void setUserReviews(List<Review> userReviews) {
         this.userReviews = userReviews;
+    }
+
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }

@@ -110,43 +110,52 @@ public class Database implements DatabaseService {
 
     // Search User by ID
     public User getUserById(int id) {
-        User user = em.find(User.class, id);
-        user.getUserCollections().size();
-        for (BookCollection collection : user.getUserCollections()) {
-            collection.getCollectionBooks().size();
-        }
-        user.getUserReviews().size();
-        user.getUserReceipts().size();
-        for (Receipt r : user.getUserReceipts()) {
-            r.getOrderDetails().size();
-            for (OrderDetail o : r.getOrderDetails()) {
-                o.getOrderBook();
-                o.getAmount();
+        try {
+            User user = em.find(User.class, id);
+            user.getUserCollections().size();
+            for (BookCollection collection : user.getUserCollections()) {
+                collection.getCollectionBooks().size();
             }
+            user.getUserReviews().size();
+            user.getUserReceipts().size();
+            for (Receipt r : user.getUserReceipts()) {
+                r.getOrderDetails().size();
+                for (OrderDetail o : r.getOrderDetails()) {
+                    o.getOrderBook();
+                    o.getAmount();
+                }
+            }
+            return user;
+        } catch (Exception e) {
+            return null;
         }
-        return user;
+
     }
 
     // Search User by mail and password for authorization
     public User verifyLogin(String email, String pass) {
-        Query q = em.createNamedQuery("User.verifyLogin");
-        q.setParameter("mail", email);
-        q.setParameter("pass", pass);
-        User user = (User) q.getSingleResult();
-        user.getUserCollections().size();
-        for (BookCollection collection : user.getUserCollections()) {
-            collection.getCollectionBooks().size();
-        }
-        user.getUserReviews().size();
-        user.getUserReceipts().size();
-        for (Receipt r : user.getUserReceipts()) {
-            r.getOrderDetails().size();
-            for (OrderDetail o : r.getOrderDetails()) {
-                o.getOrderBook();
-                o.getAmount();
+        try {
+            Query q = em.createNamedQuery("User.verifyLogin");
+            q.setParameter("mail", email);
+            q.setParameter("pass", pass);
+            User user = (User) q.getSingleResult();
+            user.getUserCollections().size();
+            for (BookCollection collection : user.getUserCollections()) {
+                collection.getCollectionBooks().size();
             }
+            user.getUserReviews().size();
+            user.getUserReceipts().size();
+            for (Receipt r : user.getUserReceipts()) {
+                r.getOrderDetails().size();
+                for (OrderDetail o : r.getOrderDetails()) {
+                    o.getOrderBook();
+                    o.getAmount();
+                }
+            }
+            return user;
+        } catch (Exception e) {
+            return null;
         }
-        return user;
     }
 
     // Create a new account
