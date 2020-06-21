@@ -18,38 +18,42 @@
         <ui:insert  name="header">
             <ui:include src="header.xhtml"/>
         </ui:insert>
-        <br/><br/><br/><br/>
-        <div class="container" style="background-color: white; margin: 0 200px">
-            <div class="row" style="margin: 0 auto !important;padding: 10px !important">
-                <h2 style="font-size: 20px !important;">Check out</h2>
-                    <hr/>
-                    <br/>
-                    <p>Choose payment method:</p>
-                <form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
-                    <input type="hidden" name="upload" value="1"/>
-                    <input type="hidden" name="return" value="welcome"/>
-                    <input type="hidden" name="cmd" value="_cart"/>
-                    <input type="hidden" name="business" value="${initParam['paypal-business']}"/>
-                    <c:set var="num" value="1"></c:set>
+        <div class="paypal-container">
+            <div class="ui-g" style="padding-bottom: 4em;">
+                <div class ="ui-g-3" style="margin-top: 1em;"><hr /></div>
+                <div class ="ui-g-6" style="text-align: center;">
+                    <h:outputText value="Choose your payment method" style="font-size: 30px;font-weight: bold;" />
+                </div>
+                <div class ="ui-g-3" style="margin-top: 1em;"><hr /></div>
+            </div>
+            <div class="ui-g">
+                <div class="ui-g-4"></div>
+                <div class="ui-g-4">
+                    <form method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr" style="height: 60px;padding-left: 20px;">
+                        <input type="hidden" name="upload" value="1"/>
+                        <input type="hidden" name="return" value="welcome"/>
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="business" value="${initParam['paypal-business']}"/>
+                        <c:set var="num" value="1"></c:set>
 
-                    <!--CART INFO-->
-                    <c:forEach items="#{cartPageBean.bookList}" var="book">
-                        <input type="hidden" name="item_number_#{num}" value="#{book.bookId}"/>
-                        <input type="hidden" name="item_name_#{num}" value="#{book.title}"/>
-                        <input type="hidden" name="quantity_#{num}" value="#{cartPageBean.bookQuantityList[book]}"/>
-                        <input type="hidden" name="amount_#{num}" value="#{book.price}"/>
-                        <c:set var="num" value="#{num+1}"></c:set>
-                    </c:forEach>
+                        <!--CART INFO-->
+                        <c:forEach items="#{cartPageBean.bookList}" var="book">
+                            <input type="hidden" name="item_number_#{num}" value="#{book.bookId}"/>
+                            <input type="hidden" name="item_name_#{num}" value="#{book.title}"/>
+                            <input type="hidden" name="quantity_#{num}" value="#{cartPageBean.bookQuantityList[book]}"/>
+                            <input type="hidden" name="amount_#{num}" value="#{book.price}"/>
+                            <c:set var="num" value="#{num+1}"></c:set>
+                        </c:forEach>
 
-                    <input type="hidden" name="return" value="localhost:8080/myweb-0.1/success.xhtml?faces-redirect=true"/>
-                    <input type="hidden" name="cancel" value="localhost:8080/myweb-0.1/success.xhtml?faces-redirect=true"/>
-                    <input type="hidden" name="currency_code" value="USD"/>
-                    <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"/>
-                </form>
+                        <input type="hidden" name="return" value="localhost:8080/myweb-0.1/success.xhtml?faces-redirect=true"/>
+                        <input type="hidden" name="cancel" value="localhost:8080/myweb-0.1/success.xhtml?faces-redirect=true"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="image" src="http://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" style="height: 100%"/>
+                    </form>
+                </div>
+                <div class="ui-g-4"></div>
             </div>
         </div>
-<br/><br/>
-        <br/><br/>
         <ui:insert name="footer">
             <ui:include src="footer.xhtml"/>
         </ui:insert>
