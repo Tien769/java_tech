@@ -341,3 +341,12 @@ ol > li{
 .button-library .ui-button-text{
     font-size: 17px;
 }
+/*PAYPAL PAGE*/
+.paypal-container{
+  margin: 6em 28em 9.5em;
+}
+.paypal-container hr{
+    height:.2em;
+    border-width:0;
+    background-color:black;
+}
