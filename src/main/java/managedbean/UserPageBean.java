@@ -143,6 +143,12 @@ public class UserPageBean extends BaseBean {
         updateBean();
         return "account.xhtml?faces-redirect=true";
     }
+    public String addMyCollection() {
+        this.user.getUserCollections().add(new BookCollection(this.newCollectionName, false, this.user));
+        this.user = as.syncAccount(this.user);
+        updateBean();
+        return "mylibrary.xhtml?faces-redirect=true";
+    }
 
     public String deleteCollection(BookCollection collection) {
         System.out.println("NUMBER OF COLLECTION: " + this.userBookCollections.size());
